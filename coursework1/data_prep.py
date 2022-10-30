@@ -8,7 +8,7 @@ df_3 = pd.read_csv('/Users/shishengjie/Desktop/comp0035-cw-g-team-18/coursework1
 df_4 = pd.read_csv('/Users/shishengjie/Desktop/comp0035-cw-g-team-18/coursework1/Gender_Pay_Gap/UK Gender Pay Gap Data - 2020 to 2021.csv')
 df_5 = pd.read_csv('/Users/shishengjie/Desktop/comp0035-cw-g-team-18/coursework1/Gender_Pay_Gap/UK Gender Pay Gap Data - 2021 to 2022-2.csv')
 df_6 = pd.read_csv('/Users/shishengjie/Desktop/comp0035-cw-g-team-18/coursework1/Gender_Pay_Gap/UK Gender Pay Gap Data - 2022 to 2023-3.csv')
-
-df_1.shape
-df_2.shape
+dfs = [df_1, df_2, df_3, df_4, df_5, df_6]
+for df in dfs:
+    print(df.shape)
 
