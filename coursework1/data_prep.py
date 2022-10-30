@@ -11,4 +11,8 @@ df_6 = pd.read_csv('/Users/shishengjie/Desktop/comp0035-cw-g-team-18/coursework1
 dfs = [df_1, df_2, df_3, df_4, df_5, df_6]
 for df in dfs:
     print(df.shape)
-
+    print(df.columns)
+    print(df.dtypes)
+df_merge = pd.concat([df_1, df_2, df_3, df_4, df_5, df_6], axis = 0)
+print(df_merge.shape, df_merge.columns)
+df.to_csv(r'/Users/shishengjie/Desktop/comp0035-cw-g-team-18/coursework1/gender_pay_gap_initial.csv')
