@@ -10,3 +10,5 @@ df_5 = pd.read_csv('/Users/shishengjie/Desktop/comp0035-cw-g-team-18/coursework1
 df_6 = pd.read_csv('/Users/shishengjie/Desktop/comp0035-cw-g-team-18/coursework1/Gender_Pay_Gap/UK Gender Pay Gap Data - 2022 to 2023-3.csv')
 
 df_1.shape
+df_2.shape
+
