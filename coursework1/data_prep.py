@@ -20,4 +20,7 @@ df.to_csv(r'/Users/shishengjie/Desktop/comp0035-cw-g-team-18/coursework1/gender_
 #Delete unnessary columns
 df_merge.drop(['EmployerName', 'EmployerId', 'CompanyNumber', 'CompanyLinkToGPGInfo',
        'ResponsiblePerson', 'CurrentName'], axis = 1, inplace = True)
-print(df_merge.columns)
+print(df_merge.shape, df_merge.columns)
+
+#Check null values
+print(df_merge.isnull().sum())
