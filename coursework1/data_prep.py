@@ -21,3 +21,4 @@ df.to_csv(r'/Users/shishengjie/Desktop/comp0035-cw-g-team-18/coursework1/gender_
 df_merge.drop(['EmployerName', 'EmployerId', 'CompanyNumber', 'CompanyLinkToGPGInfo',
        'ResponsiblePerson', 'CurrentName'], axis = 1, inplace = True)
 print(df_merge.columns)
+
