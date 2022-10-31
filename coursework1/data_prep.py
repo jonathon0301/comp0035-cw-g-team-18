@@ -17,3 +17,7 @@ df_merge = pd.concat([df_1, df_2, df_3, df_4, df_5, df_6], axis = 0)
 print(df_merge.shape, df_merge.columns)
 df.to_csv(r'/Users/shishengjie/Desktop/comp0035-cw-g-team-18/coursework1/gender_pay_gap_initial.csv')
 
+#Delete unnessary columns
+del df_merge['EmployerName', 'EmployerId','CompanyNumber','CompanyLinkToGPGInfo',
+       'ResponsiblePerson','CurrentName']
+print(df_merge)
