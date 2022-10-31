@@ -18,6 +18,6 @@ print(df_merge.shape, df_merge.columns)
 df.to_csv(r'/Users/shishengjie/Desktop/comp0035-cw-g-team-18/coursework1/gender_pay_gap_initial.csv')
 
 #Delete unnessary columns
-del df_merge['EmployerName', 'EmployerId','CompanyNumber','CompanyLinkToGPGInfo',
-       'ResponsiblePerson','CurrentName']
-print(df_merge)
+df_merge.drop(['EmployerName', 'EmployerId', 'CompanyNumber', 'CompanyLinkToGPGInfo',
+       'ResponsiblePerson', 'CurrentName'], axis = 1, inplace = True)
+print(df_merge.columns)
