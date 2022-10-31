@@ -22,3 +22,6 @@ df_merge.drop(['EmployerName', 'EmployerId', 'CompanyNumber', 'CompanyLinkToGPGI
        'ResponsiblePerson', 'CurrentName'], axis = 1, inplace = True)
 print(df_merge.columns)
 
+
+
+
