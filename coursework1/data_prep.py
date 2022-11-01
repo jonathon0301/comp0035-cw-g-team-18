@@ -26,8 +26,8 @@ df_merge = pd.concat([df_1, df_2, df_3, df_4, df_5, df_6], axis=0)
 print(df_merge.shape, df_merge.columns)
 df_merge.to_csv(r'/Users/shishengjie/Desktop/comp0035-cw-g-team-18/coursework1/gender_pay_gap_initial.csv')
 
-# Delete unnessary columns
-df_merge.drop(['EmployerName', 'EmployerId', 'CompanyNumber', 'CompanyLinkToGPGInfo',
+# Delete unnecessary columns
+df_merge.drop(['Address', 'EmployerName', 'EmployerId', 'CompanyNumber', 'CompanyLinkToGPGInfo',
                'ResponsiblePerson', 'CurrentName', 'SubmittedAfterTheDeadline'], axis=1, inplace=True)
 print(df_merge.shape, df_merge.columns)
 
@@ -43,4 +43,9 @@ plt.show()
 # Deal with null values
 df_merge = df_merge.dropna(subset=['MaleLowerQuartile', 'SicCodes', 'PostCode'])
 print(df_merge.shape, df_merge.columns, df_merge.isnull().sum())
+# Split the dataset into training and testing
+df_merge_training = df_merge[df_merge['DiffMedianBonusPercent'].notnull()].dropna(subset=['DiffMeanBonusPercent'])
+print(df_merge_training.shape, df_merge_training.columns, df_merge_training.isnull().sum())
+df_merge_testing = df_merge[df_merge['DiffMedianBonusPercent'].isnull()]
+print(df_merge_testing.shape, df_merge_testing.columns, df_merge_testing.isnull().sum())
 
