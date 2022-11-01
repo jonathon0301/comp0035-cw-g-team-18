@@ -24,7 +24,7 @@ for df in dfs:
 # Merge datasets into a single large one and save
 df_merge = pd.concat([df_1, df_2, df_3, df_4, df_5, df_6], axis=0)
 print(df_merge.shape, df_merge.columns)
-df.to_csv(r'/Users/shishengjie/Desktop/comp0035-cw-g-team-18/coursework1/gender_pay_gap_initial.csv')
+df_merge.to_csv(r'/Users/shishengjie/Desktop/comp0035-cw-g-team-18/coursework1/gender_pay_gap_initial.csv')
 
 # Delete unnessary columns
 df_merge.drop(['EmployerName', 'EmployerId', 'CompanyNumber', 'CompanyLinkToGPGInfo',
@@ -41,5 +41,6 @@ ax = sns.heatmap(df_merge.corr(), linewidth=0.5)
 plt.show()
 
 # Deal with null values
-df_merge = df_merge.dropna(subset=['MaleLowerQuartile'])
+df_merge = df_merge.dropna(subset=['MaleLowerQuartile', 'SicCodes', 'PostCode'])
 print(df_merge.shape, df_merge.columns, df_merge.isnull().sum())
+
