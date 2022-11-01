@@ -1,5 +1,8 @@
 from pathlib import Path
+import numpy as np
 import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 #Load initial datasets
 df_1 = pd.read_csv('/Users/shishengjie/Desktop/comp0035-cw-g-team-18/coursework1/Gender_Pay_Gap/UK Gender Pay Gap Data - 2017 to 2018.csv')
@@ -24,3 +27,11 @@ print(df_merge.shape, df_merge.columns)
 
 #Check null values
 print(df_merge.isnull().sum())
+
+#Show correlations
+pd.set_option('display.max_columns', None)
+print(df_merge.corr())
+ax = sns.heatmap(df_merge.corr(), linewidth=0.5)
+plt.show()
+
+#Deal with null values
