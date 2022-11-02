@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from sklearn.tree import DecisionTreeRegressor
 
 # Load initial datasets
 df_1 = pd.read_csv(
@@ -48,4 +49,39 @@ df_merge_training = df_merge[df_merge['DiffMedianBonusPercent'].notnull()].dropn
 print(df_merge_training.shape, df_merge_training.columns, df_merge_training.isnull().sum())
 df_merge_testing = df_merge[df_merge['DiffMedianBonusPercent'].isnull()]
 print(df_merge_testing.shape, df_merge_testing.columns, df_merge_testing.isnull().sum())
-
+# Train tree regression model
+X = df_merge_training[['DiffMeanHourlyPercent',
+                       'DiffMedianHourlyPercent', 'MaleBonusPercent', 'FemaleBonusPercent',
+                       'MaleLowerQuartile', 'FemaleLowerQuartile', 'MaleLowerMiddleQuartile',
+                       'FemaleLowerMiddleQuartile', 'MaleUpperMiddleQuartile',
+                       'FemaleUpperMiddleQuartile', 'MaleTopQuartile', 'FemaleTopQuartile']]
+y_1 = df_merge_training[['DiffMeanBonusPercent']]
+y_2 = df_merge_training[['DiffMedianBonusPercent']]
+model_1 = DecisionTreeRegressor()
+model_2 = DecisionTreeRegressor()
+model_1.fit(X, y_1)
+model_2.fit(X, y_2)
+df_merge_testing['DiffMeanBonusPercent'] = model_1.predict(df_merge_testing[['DiffMeanHourlyPercent',
+                                                                             'DiffMedianHourlyPercent',
+                                                                             'MaleBonusPercent',
+                                                                             'FemaleBonusPercent',
+                                                                             'MaleLowerQuartile',
+                                                                             'FemaleLowerQuartile',
+                                                                             'MaleLowerMiddleQuartile',
+                                                                             'FemaleLowerMiddleQuartile',
+                                                                             'MaleUpperMiddleQuartile',
+                                                                             'FemaleUpperMiddleQuartile',
+                                                                             'MaleTopQuartile',
+                                                                             'FemaleTopQuartile']])
+df_merge_testing['DiffMedianBonusPercent'] = model_2.predict(df_merge_testing[['DiffMeanHourlyPercent',
+                                                                               'DiffMedianHourlyPercent',
+                                                                               'MaleBonusPercent',
+                                                                               'FemaleBonusPercent',
+                                                                               'MaleLowerQuartile',
+                                                                               'FemaleLowerQuartile',
+                                                                               'MaleLowerMiddleQuartile',
+                                                                               'FemaleLowerMiddleQuartile',
+                                                                               'MaleUpperMiddleQuartile',
+                                                                               'FemaleUpperMiddleQuartile',
+                                                                               'MaleTopQuartile',
+                                                                               'FemaleTopQuartile']])
