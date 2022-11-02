@@ -29,7 +29,7 @@ df_merge.to_csv(r'/Users/shishengjie/Desktop/comp0035-cw-g-team-18/coursework1/g
 
 # Delete unnecessary columns
 df_merge.drop(['Address', 'EmployerName', 'EmployerId', 'CompanyNumber', 'CompanyLinkToGPGInfo',
-               'ResponsiblePerson', 'CurrentName', 'SubmittedAfterTheDeadline'], axis=1, inplace=True)
+               'ResponsiblePerson', 'CurrentName', 'SubmittedAfterTheDeadline', 'DueDate'], axis=1, inplace=True)
 print(df_merge.shape, df_merge.columns)
 
 # Check null values
@@ -77,4 +77,4 @@ print(df_merge_testing.shape, df_merge_testing.columns, df_merge_testing.isnull(
 
 # Bind the two dataset together again
 df_none_na = pd.concat([df_merge_training, df_merge_testing], axis=0)
-print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum())
+print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
