@@ -63,8 +63,8 @@ X_test = df_merge_testing[['DiffMeanHourlyPercent',
                            'MaleLowerQuartile', 'FemaleLowerQuartile', 'MaleLowerMiddleQuartile',
                            'FemaleLowerMiddleQuartile', 'MaleUpperMiddleQuartile',
                            'FemaleUpperMiddleQuartile', 'MaleTopQuartile', 'FemaleTopQuartile']]
-model_1 = RandomForestRegressor(n_estimators = 100, random_state = 0)
-model_2 = RandomForestRegressor(n_estimators = 100, random_state = 0)
+model_1 = RandomForestRegressor(n_estimators=100, random_state=0)
+model_2 = RandomForestRegressor(n_estimators=100, random_state=0)
 model_1.fit(X_train, y_1_train)
 model_2.fit(X_train, y_2_train)
 # Predict the value with the testing data and substitute values to null values
@@ -78,3 +78,10 @@ print(df_merge_testing.shape, df_merge_testing.columns, df_merge_testing.isnull(
 # Bind the two dataset together again
 df_none_na = pd.concat([df_merge_training, df_merge_testing], axis=0)
 print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
+
+# Dealing with Postcode, SicCodes, EmployerSize & DateSubmitted
+df_none_na["PostCode"] = df["PostCode"].str.split().str[0]
+print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
+
+
+print(df_none_na.EmployerSize.value_counts())
