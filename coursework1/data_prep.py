@@ -7,17 +7,17 @@ from sklearn.ensemble import RandomForestRegressor
 
 # Load initial datasets
 df_1 = pd.read_csv(
-    '/Users/shishengjie/Desktop/comp0035-cw-g-team-18/coursework1/Gender_Pay_Gap/UK Gender Pay Gap Data - 2017 to 2018.csv')
+    'Gender_Pay_Gap/UK Gender Pay Gap Data - 2017 to 2018.csv')
 df_2 = pd.read_csv(
-    '/Users/shishengjie/Desktop/comp0035-cw-g-team-18/coursework1/Gender_Pay_Gap/UK Gender Pay Gap Data - 2018 to 2019.csv')
+    'Gender_Pay_Gap/UK Gender Pay Gap Data - 2018 to 2019.csv')
 df_3 = pd.read_csv(
-    '/Users/shishengjie/Desktop/comp0035-cw-g-team-18/coursework1/Gender_Pay_Gap/UK Gender Pay Gap Data - 2019 to 2020.csv')
+    'Gender_Pay_Gap/UK Gender Pay Gap Data - 2019 to 2020.csv')
 df_4 = pd.read_csv(
-    '/Users/shishengjie/Desktop/comp0035-cw-g-team-18/coursework1/Gender_Pay_Gap/UK Gender Pay Gap Data - 2020 to 2021.csv')
+    'Gender_Pay_Gap/UK Gender Pay Gap Data - 2020 to 2021.csv')
 df_5 = pd.read_csv(
-    '/Users/shishengjie/Desktop/comp0035-cw-g-team-18/coursework1/Gender_Pay_Gap/UK Gender Pay Gap Data - 2021 to 2022-2.csv')
+    'Gender_Pay_Gap/UK Gender Pay Gap Data - 2021 to 2022-2.csv')
 df_6 = pd.read_csv(
-    '/Users/shishengjie/Desktop/comp0035-cw-g-team-18/coursework1/Gender_Pay_Gap/UK Gender Pay Gap Data - 2022 to 2023-3.csv')
+    'Gender_Pay_Gap/UK Gender Pay Gap Data - 2022 to 2023-3.csv')
 dfs = [df_1, df_2, df_3, df_4, df_5, df_6]
 for df in dfs:
     print(df.shape, df.columns, df.dtypes)
@@ -80,7 +80,7 @@ df_none_na = pd.concat([df_merge_training, df_merge_testing], axis=0)
 print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
 
 # Dealing with Postcode, SicCodes, EmployerSize & DateSubmitted
-df_none_na["PostCode"] = df["PostCode"].str.split().str[0]
+df_none_na["PostCode"] = df_none_na["PostCode"].str.split().str[0]
 print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
 
 
