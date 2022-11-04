@@ -76,6 +76,14 @@ print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_n
 # Dealing with Postcode, SicCodes, EmployerSize & DateSubmitted
 df_none_na["PostCode"] = df_none_na["PostCode"].str.split().str[0]
 print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
+df_out_code = pd.read_csv('Postcode districts.csv')
+df_out_code.drop(['Latitude', 'Longitude', 'Easting', 'Northing', 'Grid Reference', 'Town/Area',
+                  'Postcodes', 'Active postcodes', 'Population', 'Households',
+                  'Nearby districts', 'UK region'], axis=1, inplace=True)
+print(df_out_code.dtypes)
+df_none_na = df_none_na.merge(df_out_code, left_on='PostCode', right_on='Postcode', how='inner')
+print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
+df_none_na.drop(['Postcode'], axis=1, inplace=True)
+print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
 
 
-print(df_none_na.EmployerSize.value_counts())
