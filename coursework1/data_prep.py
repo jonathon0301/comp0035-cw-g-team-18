@@ -78,6 +78,7 @@ print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_n
 df_none_na["PostCode"] = df_none_na["PostCode"].str.split().str[0]
 print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
 # Load a dataframe explaining outcode in the UK
+# https://www.doogal.co.uk/PostcodeDistricts
 df_out_code = pd.read_csv('Postcode districts.csv')
 df_out_code.drop(['Latitude', 'Longitude', 'Easting', 'Northing', 'Grid Reference', 'Town/Area',
                   'Postcodes', 'Active postcodes', 'Population', 'Households',
