@@ -1,4 +1,3 @@
-from pathlib import Path
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -73,17 +72,23 @@ print(df_merge_testing.shape, df_merge_testing.columns, df_merge_testing.isnull(
 df_none_na = pd.concat([df_merge_training, df_merge_testing], axis=0)
 print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
 
-# Dealing with Postcode, SicCodes, EmployerSize & DateSubmitted
+# Deal with Postcode, SicCodes, EmployerSize & DateSubmitted
+# Deal with Postcode
+# Only keep outcode (before space)
 df_none_na["PostCode"] = df_none_na["PostCode"].str.split().str[0]
 print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
+# Load a dataframe explaining outcode in the UK
 df_out_code = pd.read_csv('Postcode districts.csv')
 df_out_code.drop(['Latitude', 'Longitude', 'Easting', 'Northing', 'Grid Reference', 'Town/Area',
                   'Postcodes', 'Active postcodes', 'Population', 'Households',
                   'Nearby districts', 'UK region'], axis=1, inplace=True)
 print(df_out_code.dtypes)
+# Inner merge two df
 df_none_na = df_none_na.merge(df_out_code, left_on='PostCode', right_on='Postcode', how='inner')
 print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
 df_none_na.drop(['Postcode'], axis=1, inplace=True)
 print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
 
-
+# Deal with SicCodes
+df_none_na["SicCodes"] = df_none_na["SicCodes"].str.split(pat='\n').str[-1]
+print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
