@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestRegressor
 
 # Load initial datasets
+# https://gender-pay-gap.service.gov.uk/viewing/download
 df_1 = pd.read_csv('Gender_Pay_Gap/UK Gender Pay Gap Data - 2017 to 2018.csv')
 df_2 = pd.read_csv('Gender_Pay_Gap/UK Gender Pay Gap Data - 2018 to 2019.csv')
 df_3 = pd.read_csv('Gender_Pay_Gap/UK Gender Pay Gap Data - 2019 to 2020.csv')
@@ -43,6 +44,7 @@ df_merge_training = df_merge[df_merge['DiffMedianBonusPercent'].notnull()].dropn
 print(df_merge_training.shape, df_merge_training.columns, df_merge_training.isnull().sum())
 df_merge_testing = df_merge[df_merge['DiffMedianBonusPercent'].isnull()]
 print(df_merge_testing.shape, df_merge_testing.columns, df_merge_testing.isnull().sum())
+
 # Train random forest regression model
 # NOTE: This can quite slow, please wait
 X_train = df_merge_training[['DiffMeanHourlyPercent',
@@ -50,17 +52,25 @@ X_train = df_merge_training[['DiffMeanHourlyPercent',
                              'MaleLowerQuartile', 'FemaleLowerQuartile', 'MaleLowerMiddleQuartile',
                              'FemaleLowerMiddleQuartile', 'MaleUpperMiddleQuartile',
                              'FemaleUpperMiddleQuartile', 'MaleTopQuartile', 'FemaleTopQuartile']]
+
 y_1_train = df_merge_training[['DiffMeanBonusPercent']]
+
 y_2_train = df_merge_training[['DiffMedianBonusPercent']]
+
 X_test = df_merge_testing[['DiffMeanHourlyPercent',
                            'DiffMedianHourlyPercent', 'MaleBonusPercent', 'FemaleBonusPercent',
                            'MaleLowerQuartile', 'FemaleLowerQuartile', 'MaleLowerMiddleQuartile',
                            'FemaleLowerMiddleQuartile', 'MaleUpperMiddleQuartile',
                            'FemaleUpperMiddleQuartile', 'MaleTopQuartile', 'FemaleTopQuartile']]
+
 model_1 = RandomForestRegressor(n_estimators=100, random_state=0)
+
 model_2 = RandomForestRegressor(n_estimators=100, random_state=0)
+
 model_1.fit(X_train, y_1_train)
+
 model_2.fit(X_train, y_2_train)
+
 # Predict the value with the testing data and substitute values to null values
 y_1_pred = model_1.predict(X_test)
 y_2_pred = model_2.predict(X_test)
@@ -78,6 +88,7 @@ print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_n
 # Only keep outcode (before space)
 df_none_na["PostCode"] = df_none_na["PostCode"].str.split().str[0]
 print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
+
 # Load a dataframe explaining outcode in the UK
 # https://www.doogal.co.uk/PostcodeDistricts
 df_out_code = pd.read_csv('Postcode districts.csv')
@@ -85,6 +96,7 @@ df_out_code.drop(['Latitude', 'Longitude', 'Easting', 'Northing', 'Grid Referenc
                   'Postcodes', 'Active postcodes', 'Population', 'Households',
                   'Nearby districts', 'UK region'], axis=1, inplace=True)
 print(df_out_code.dtypes)
+
 # Inner merge two df
 df_none_na = df_none_na.merge(df_out_code, left_on='PostCode', right_on='Postcode', how='inner')
 print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
@@ -94,6 +106,7 @@ print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_n
 # Deal with SicCodes
 df_none_na["SicCodes"] = df_none_na["SicCodes"].str.split(pat='\n').str[-1]
 print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
+
 # https://en.wikipedia.org/wiki/Standard_Industrial_Classification
 mappings = [
     (100, 999, 'Agriculture'),
@@ -152,6 +165,7 @@ df_visualization.drop(['Unnamed: 0', 'PostCode', 'SicCodes', 'EmployerSize'], ax
 print(df_visualization.shape, df_visualization.columns, df_visualization.isnull().sum(), df_visualization.head(5))
 pd.set_option('display.max_columns', None)
 print(df_visualization.describe())
+
 # Plot graphs
 # Plot1: Histogram on DiffMeanHourly Percent
 fig1, ax1 = plt.subplots()
