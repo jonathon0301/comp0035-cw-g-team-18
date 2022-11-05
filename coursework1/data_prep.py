@@ -94,7 +94,7 @@ print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_n
 df_out_code = pd.read_csv('Postcode districts.csv')
 df_out_code.drop(['Latitude', 'Longitude', 'Easting', 'Northing', 'Grid Reference', 'Town/Area',
                   'Postcodes', 'Active postcodes', 'Population', 'Households',
-                  'Nearby districts', 'UK region'], axis=1, inplace=True)
+                  'Nearby districts'], axis=1, inplace=True)
 print(df_out_code.dtypes)
 
 # Inner merge two df
@@ -215,5 +215,26 @@ ax8 = sns.boxplot(data=df_visualization, y="FemaleTopQuartile", x="Industry", hu
 ax8.set(ylim=(-50, 150))
 ax8.tick_params(axis='x', labelrotation=90)
 ax8.set_title('BoxPlot of FemaleTopQuartile against EmployerSizeMedian & Industry')
+
+# Plot9: BoxPlot of DiffMeanHourlyPercent against Region
+fig9 = plt.subplots()
+ax9 = sns.boxplot(data=df_visualization, y="DiffMeanHourlyPercent", x="UK region")
+ax9.set(ylim=(-200, 200))
+ax9.tick_params(axis='x', labelrotation=90)
+ax9.set_title('BoxPlot of DiffMeanHourlyPercent against Region')
+
+# Plot10: BoxPlot of DiffMeanBonusPercent against Region
+fig10 = plt.subplots()
+ax10 = sns.boxplot(data=df_visualization, y="DiffMeanBonusPercent", x="UK region")
+ax10.set(ylim=(-200, 200))
+ax10.tick_params(axis='x', labelrotation=90)
+ax10.set_title('BoxPlot of DiffMeanBonusPercent against Region')
+
+# Plot11: BoxPlot of FemaleTopQuartile against Region
+fig11 = plt.subplots()
+ax11 = sns.boxplot(data=df_visualization, y="FemaleTopQuartile", x="UK region")
+ax11.set(ylim=(-200, 200))
+ax11.tick_params(axis='x', labelrotation=90)
+ax11.set_title('BoxPlot of FemaleTopQuartile against Region')
 
 plt.show()
