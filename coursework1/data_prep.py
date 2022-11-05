@@ -145,3 +145,4 @@ print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_n
 
 # Export .csv file
 df_none_na.to_csv('gender_pay_gap_prepared.csv')
+
