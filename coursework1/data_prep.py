@@ -22,7 +22,8 @@ df_merge.to_csv('gender_pay_gap_initial.csv')
 
 # Delete unnecessary columns
 df_merge.drop(['Address', 'EmployerName', 'EmployerId', 'CompanyNumber', 'CompanyLinkToGPGInfo',
-               'ResponsiblePerson', 'CurrentName', 'SubmittedAfterTheDeadline', 'DueDate'], axis=1, inplace=True)
+               'ResponsiblePerson', 'CurrentName', 'SubmittedAfterTheDeadline',
+               'DueDate', 'DateSubmitted'], axis=1, inplace=True)
 print(df_merge.shape, df_merge.columns)
 
 # Check null values
@@ -72,7 +73,7 @@ print(df_merge_testing.shape, df_merge_testing.columns, df_merge_testing.isnull(
 df_none_na = pd.concat([df_merge_training, df_merge_testing], axis=0)
 print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
 
-# Deal with Postcode, SicCodes, EmployerSize & DateSubmitted
+# Deal with Postcode, SicCodes & EmployerSize
 # Deal with Postcode
 # Only keep outcode (before space)
 df_none_na["PostCode"] = df_none_na["PostCode"].str.split().str[0]
@@ -93,3 +94,54 @@ print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_n
 # Deal with SicCodes
 df_none_na["SicCodes"] = df_none_na["SicCodes"].str.split(pat='\n').str[-1]
 print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
+# https://en.wikipedia.org/wiki/Standard_Industrial_Classification
+mappings = [
+    (100, 999, 'Agriculture, Forestry and Fishing'),
+    (1000, 1499, 'Mining'),
+    (1500, 1799, 'Construction'),
+    (1800, 1999, 'not used'),
+    (2000, 3999, 'Manufacturing'),
+    (4000, 4999, 'Transportation, Communications, Electric, gas and Sanitary service'),
+    (5000, 5199, 'Wholesale Trade'),
+    (5200, 5999, 'Retail Trade'),
+    (6000, 6799, 'Finance, Insurance and Real Estate'),
+    (7000, 8999, 'Services'),
+    (9100, 9729, 'Public Administration'),
+    (9900, 9999, 'Nonclassifiable'),
+]
+errors = set()
+
+
+def to_code_range(i):
+    if type(i) != str:
+        return np.nan
+    if i == "None Supplied":
+        return np.nan
+    siccode = int(i[0:4])
+    for code_from, code_to, name in mappings:
+        if code_from <= siccode <= code_to:
+            return name
+    errors.add(siccode)
+    return np.nan
+
+
+df_none_na['Industry'] = df_none_na['SicCodes'].map(to_code_range)
+print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
+
+# Deal with EmployerSize
+print(df_none_na.EmployerSize.value_counts())
+mapping = {
+    'Less than 250': 125,
+    '250 to 499': 350,
+    '500 to 999': 750,
+    '1000 to 4999': 3500,
+    '5000 to 19,999': 12000,
+    '20,000 or more': 35000,
+    'Not Provided': np.nan
+}
+
+df_none_na['EmployerSizeMedian'] = df_none_na['EmployerSize'].map(mapping.get)
+print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
+
+# Export .csv file
+df_none_na.to_csv('gender_pay_gap_prepared.csv')
