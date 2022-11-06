@@ -61,7 +61,8 @@ regions and company sizes.
 
    df_merge = pd.concat([df_1, df_2, df_3, df_4, df_5, df_6], axis=0)
    print(df_merge.shape, df_merge.columns)
-   df_merge.to_csv('gender_pay_gap_initial.csv')```
+   df_merge.to_csv('gender_pay_gap_initial.csv')
+   ```
    
 </p>
 </details>
