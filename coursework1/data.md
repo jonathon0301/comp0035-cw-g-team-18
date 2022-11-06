@@ -34,10 +34,23 @@ The exact meaning of each column can be checked from the original website.
 In case readers of this file do not have time to check on their own and some names are not quite intuitive, 
 it is necessary to explain some vague meanings:
 
-1. SicCodes represents Standard Industrial Classification code of the company at the time of submission, showing its nature of business;
-2. All Diff values show the % difference between male and female, where the negative figures indicate female has higher pay;
-3. The remaining Gender Pay Gap Figures represent the percentage of certain gender employee paid a bonus or in certain quarter of payment levels within their company.
+1. **SicCodes** represents Standard Industrial Classification code of the company at the time of submission, showing its nature of business;
+2. All **Diff** values show the % difference between male and female, where the negative figures indicate female has higher pay;
+3. The remaining **Gender Pay Gap Figures** represent the percentage of certain gender employee paid a bonus or in certain quarter of payment levels within their company.
 
 ## Data Preparation
+After loading the six spreadsheets into the data_prep python file and looking at their basic information mentioned in 
+the previous section, we decided to merge all the tables into one single dataframe they all contain the same columns. 
+The merger is inconsequential as we do not expect the situation would vary a lot within these years and we do not plan 
+to analyze in time series. Instead, we wish to have a look at the gender pay gap situation across different industries, 
+regions and company sizes.
+### Delete Unnecessary Columns
+Since the time series are no loger considered, columns including 
+**SubmittedAfterTheDeadline, DueDate & DateSubmitted** can be removed. Meanwhile, in order to protect privacy and 
+prevent direct focus on a particular company, information including **Address, EmployerName, EmployerId, 
+CompanyNumber, CompanyLinkToGPGInfo,ResponsiblePerson & CurrentName** that can locate a specific company or person 
+are removed as well. Although **PostCode** can also indicate the address of that single company, it is kept at this stage 
+and will be processed later as the project needs to analyze on regional patterns. 
+
 
 
