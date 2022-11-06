@@ -49,6 +49,7 @@ regions and company sizes. The merged dataset then became the initial dataset fo
 <p>
 
 ```ruby
+   # Load initial datasets
    df_1 = pd.read_csv('Gender_Pay_Gap/UK Gender Pay Gap Data - 2017 to 2018.csv')
    df_2 = pd.read_csv('Gender_Pay_Gap/UK Gender Pay Gap Data - 2018 to 2019.csv')
    df_3 = pd.read_csv('Gender_Pay_Gap/UK Gender Pay Gap Data - 2019 to 2020.csv')
@@ -58,7 +59,7 @@ regions and company sizes. The merged dataset then became the initial dataset fo
    dfs = [df_1, df_2, df_3, df_4, df_5, df_6]
    for df in dfs:
        print(df.shape, df.columns, df.dtypes)
-
+   # Merge datasets into a single large one and save
    df_merge = pd.concat([df_1, df_2, df_3, df_4, df_5, df_6], axis=0)
    print(df_merge.shape, df_merge.columns)
    df_merge.to_csv('gender_pay_gap_initial.csv')
