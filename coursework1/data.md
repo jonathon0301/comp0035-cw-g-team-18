@@ -118,4 +118,15 @@ dtype: int64
 
 ```
 
-It can be inferred that there are 397 rows containing no values on 
+It can be inferred that missing values on **MaleLowerQuartile, FemaleLowerQuartile, 
+MaleLowerMiddleQuartile, FemaleLowerMiddleQuartile, MaleUpperMiddleQuartile, FemaleUpperMiddleQuartile, 
+MaleTopQuartile and FemaleTopQuartile** are in the **same rows**. Meanwhile, compared with 48988 total rows, 
+these 397 rows as well as 2919 rows containing missing values on SicCodes and 
+only 170 of that on PostCode seem to be irrelevant. 
+Therefore, these columns are simply removed from the dataset with the code
+
+```df_merge = df_merge.dropna(subset=['MaleLowerQuartile', 'SicCodes', 'PostCode'])```
+
+However, even after deleting these rows, there are still 8181 missing values on DiffMeanBonusPercent and 
+8183 on DiffMedianBonusPercent, which are relatively a large proportion (approximately 18%) 
+of the total rows. 
