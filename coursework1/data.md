@@ -63,6 +63,7 @@ regions and company sizes.
    df_merge.to_csv('gender_pay_gap_initial.csv')
 </p>
 </details>
+
 ### Delete Unnecessary Columns
 Since the time series are no loger considered, columns including 
 **SubmittedAfterTheDeadline, DueDate & DateSubmitted** can be removed. Meanwhile, in order to protect privacy and 
