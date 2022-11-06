@@ -129,4 +129,24 @@ Therefore, these columns are simply removed from the dataset with the code
 
 However, even after deleting these rows, there are still 8181 missing values on DiffMeanBonusPercent and 
 8183 on DiffMedianBonusPercent, which are relatively a large proportion (approximately 18%) 
-of the total rows. 
+of the total rows. This proportion makes it unsuitable to be removed as above as it may affect the
+ total trend. Furthermore, by looking at the correlation heatmap below, there is no obvious correlations between those two 
+variables and others. Therefore, it is not possible to infer those missing values directly from existing values.
+
+![](cw1_data_visulization/correlogram.png)
+
+<details><summary> CLICK TO SEE CODES TO DRAW CORRELATION HEATMAP </summary>
+<p>
+
+```ruby
+
+pd.set_option('display.max_columns', None)
+print(df_merge.corr())
+ax = sns.heatmap(df_merge.corr(), linewidth=0.5)
+plt.show()
+
+```
+   
+</p>
+</details>
+
