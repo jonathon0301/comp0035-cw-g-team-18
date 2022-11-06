@@ -68,7 +68,7 @@ df_merge.to_csv('gender_pay_gap_initial.csv')
 </p>
 </details>
 
-### 2.1 Delete Unnecessary Columns
+### 2.1. Delete Unnecessary Columns
 Since the time series are no loger considered, columns including 
 **SubmittedAfterTheDeadline, DueDate & DateSubmitted** can be removed. Meanwhile, in order to protect privacy and 
 prevent direct focus on a particular company, information including **Address, EmployerName, EmployerId, 
@@ -89,4 +89,33 @@ print(df_merge.shape, df_merge.columns)
 </p>
 </details>
 
+### 2.2. Deal with Null Values
+By using the code
 
+```print(df_merge.isnull().sum())```
+
+The numbers of null values for each column are shown as below:
+
+```
+PostCode                      170
+SicCodes                     2919
+DiffMeanHourlyPercent           0
+DiffMedianHourlyPercent         0
+DiffMeanBonusPercent         9015
+DiffMedianBonusPercent       9017
+MaleBonusPercent                0
+FemaleBonusPercent              0
+MaleLowerQuartile             397
+FemaleLowerQuartile           397
+MaleLowerMiddleQuartile       397
+FemaleLowerMiddleQuartile     397
+MaleUpperMiddleQuartile       397
+FemaleUpperMiddleQuartile     397
+MaleTopQuartile               397
+FemaleTopQuartile             397
+EmployerSize                    0
+dtype: int64
+
+```
+
+It can be inferred that there are 397 rows containing no values on 
