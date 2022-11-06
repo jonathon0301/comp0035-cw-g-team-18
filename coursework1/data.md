@@ -47,6 +47,7 @@ regions and company sizes.
 
 <details><summary>CLICK TO SEE CODES OF LOADING DATASET & MERGER</summary>
 <p>
+
 ```ruby
    df_1 = pd.read_csv('Gender_Pay_Gap/UK Gender Pay Gap Data - 2017 to 2018.csv')
    df_2 = pd.read_csv('Gender_Pay_Gap/UK Gender Pay Gap Data - 2018 to 2019.csv')
@@ -60,7 +61,8 @@ regions and company sizes.
 
    df_merge = pd.concat([df_1, df_2, df_3, df_4, df_5, df_6], axis=0)
    print(df_merge.shape, df_merge.columns)
-   df_merge.to_csv('gender_pay_gap_initial.csv')
+   df_merge.to_csv('gender_pay_gap_initial.csv')```
+   
 </p>
 </details>
 
