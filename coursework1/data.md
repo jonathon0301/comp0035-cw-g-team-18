@@ -21,15 +21,15 @@ In case of data types, the 27 columns can also be grouped into three:
 
 The number of rows of each table is shown below:
 
-| Reporting Year | Rows  |
-|----------------|-------|
-| 2017-18        | 10225 |
-| 2018-19        | 10466 |
-| 2019-20        | 6921  |
-| 2020-21        | 10532 |
-| 2021-22        | 10491 |
-| 2022-23        | 353   |
-|                |       |
-| Total          | 48988 |
+| Reporting Year | Rows      |
+|----------------|-----------|
+| 2017-18        | 10225     |
+| 2018-19        | 10466     |
+| 2019-20        | 6921      |
+| 2020-21        | 10532     |
+| 2021-22        | 10491     |
+| 2022-23        | 353       |
+|                |           |
+| **Total**      | **48988** |
 
 
