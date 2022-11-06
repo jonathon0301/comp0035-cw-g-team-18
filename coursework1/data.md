@@ -45,7 +45,7 @@ The merger is inconsequential as we do not expect the situation would vary a lot
 to analyze in time series. Instead, we wish to have a look at the gender pay gap situation across different industries, 
 regions and company sizes. The merged dataset then became the initial dataset for preparation.
 
-<details><summary> *CLICK TO SEE CODES TO LOAD & MERGE DATASET* </summary>
+<details><summary> CLICK TO SEE CODES TO LOAD & MERGE DATASET </summary>
 <p>
 
 ```ruby
