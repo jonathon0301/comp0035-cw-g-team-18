@@ -1,4 +1,4 @@
-# Data preparation and understanding
+# Data Preparation and Understanding
 
 ## Data Preparation
 
