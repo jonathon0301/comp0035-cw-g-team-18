@@ -76,5 +76,17 @@ CompanyNumber, CompanyLinkToGPGInfo,ResponsiblePerson & CurrentName** that can l
 are removed as well. Although **PostCode** can also indicate the address of that single company, it is kept at this stage 
 and will be processed later as the project needs to analyze on regional patterns. 
 
+<details><summary> CLICK TO SEE CODES TO LOAD & MERGE DATASET </summary>
+<p>
+
+```ruby
+df_merge.drop(['Address', 'EmployerName', 'EmployerId', 'CompanyNumber', 'CompanyLinkToGPGInfo',
+               'ResponsiblePerson', 'CurrentName', 'SubmittedAfterTheDeadline',
+               'DueDate', 'DateSubmitted'], axis=1, inplace=True)
+print(df_merge.shape, df_merge.columns)
+```
+
+</p>
+</details>
 
 
