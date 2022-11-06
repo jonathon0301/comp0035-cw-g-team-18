@@ -1,6 +1,6 @@
 # Data Preparation and Understanding
 
-## Description of Initial Data from GOV.UK
+## 1. Description of Initial Data from GOV.UK
 The dataset shows the gender pay gap situations reported from different companies in various sizes and 
 from different industries and regions. It consists of six separate csv spreadsheets, which show situations from reporting
 year 2017-18 to 2022-23 respectively. It can be downloaded from [website of Gender Pay Gap Service of UK Government.](https://gender-pay-gap.service.gov.uk)
@@ -38,14 +38,14 @@ it is necessary to explain some vague meanings:
 2. All **Diff** values show the % difference between male and female, where the negative figures indicate female has higher pay;
 3. The remaining **Gender Pay Gap Figures** represent the percentage of certain gender employee paid a bonus or in certain quarter of payment levels within their company.
 
-## Data Preparation
+## 2. Data Preparation
 After loading the six spreadsheets into the data_prep python file and looking at their basic information mentioned in 
 the previous section, we decided to merge all the tables into one single dataframe they all contain the same columns. 
 The merger is inconsequential as we do not expect the situation would vary a lot within these years and we do not plan 
 to analyze in time series. Instead, we wish to have a look at the gender pay gap situation across different industries, 
-regions and company sizes.
+regions and company sizes. The merged dataset then became the initial dataset for preparation.
 
-<details><summary>CLICK TO SEE CODES OF LOADING DATASET & MERGER</summary>
+<details><summary>CLICK TO SEE CODES TO LOAD & MERGE DATASET</summary>
 <p>
 
 ```ruby
@@ -67,7 +67,7 @@ regions and company sizes.
 </p>
 </details>
 
-### Delete Unnecessary Columns
+### 2.1 Delete Unnecessary Columns
 Since the time series are no loger considered, columns including 
 **SubmittedAfterTheDeadline, DueDate & DateSubmitted** can be removed. Meanwhile, in order to protect privacy and 
 prevent direct focus on a particular company, information including **Address, EmployerName, EmployerId, 
