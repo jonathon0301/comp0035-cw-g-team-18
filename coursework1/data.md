@@ -1,5 +1,9 @@
 # Data Preparation and Understanding
 
+***This markdown file is used to describe the process of data preparation including how missing values are dealt with 
+and how region, industry and size of the company are determined. It will also provide some data visualizations to help 
+understand the dataset.***
+
 ## 1. Description of Initial Data from GOV.UK
 The dataset shows the gender pay gap situations reported from different companies in various sizes and 
 from different industries and regions. It consists of six separate csv spreadsheets, which show situations from reporting
@@ -270,4 +274,45 @@ print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_n
 </p>
 </details>
 
-### 2.3. Deal with Postcode, SicCodes & EmployerSize
+### 2.3. Deal with PostCode, SicCodes & EmployerSize
+The current dataset has no clear indication on the region and industry of those companies. Therefore, we need to 
+infer these information from PostCode and SicCodes. Meanwhile, in case future analysis may need relations between 
+those index with company sizes, it is better to convert the EmployerSize into a numerical variable.
+
+#### Deal with PostCode
+As mentioned above, it is not appropriate to include information that can target on a particular company. Since the 
+postcode in UK can easily locate an address, which then can locate the company, it is necessary to substitute these 
+postcodes with a wider geographical area. By looking at the [explanation on UK postcode format 
+published by UK Government, ](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/283357/ILRSpecification2013_14Appendix_C_Dec2012_v1.pdf)
+it can be concluded that a postcode in UK consists of two parts -- an Outcode (before space) and an Incode (after space). 
+Having only the Outcode can locate the region of the company in. Therefore, strings after the space in the column 
+PostCode were dropped and only the Outcode part was kept with code below.
+
+```ruby
+
+df_none_na["PostCode"] = df_none_na["PostCode"].str.split().str[0]
+
+```
+Then, [a dataset published by doogal.co.uk](https://www.doogal.co.uk/PostcodeDistricts) with a complete list of UK 
+postcode districts was used to match the Outcode to the Region and UK Region it represent with inner merge function of pandas.
+
+```ruby
+
+df_out_code = pd.read_csv('Postcode districts.csv')
+df_out_code.drop(['Latitude', 'Longitude', 'Easting', 'Northing', 'Grid Reference', 'Town/Area',
+                  'Postcodes', 'Active postcodes', 'Population', 'Households',
+                  'Nearby districts'], axis=1, inplace=True)
+print(df_out_code.dtypes)
+
+# Inner merge two df
+df_none_na = df_none_na.merge(df_out_code, left_on='PostCode', right_on='Postcode', how='inner')
+print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
+df_none_na.drop(['Postcode'], axis=1, inplace=True)
+print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
+
+```
+
+#### Deal with SicCodes
+
+
+
