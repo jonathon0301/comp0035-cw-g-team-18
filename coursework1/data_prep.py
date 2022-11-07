@@ -112,20 +112,30 @@ print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_n
 df_none_na["SicCodes"] = df_none_na["SicCodes"].str.split(pat='\n').str[-1]
 print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
 
-# https://en.wikipedia.org/wiki/Standard_Industrial_Classification
+# https://resources.companieshouse.gov.uk/sic/
 mappings = [
-    (100, 999, 'Agriculture'),
-    (1000, 1499, 'Mining'),
-    (1500, 1799, 'Construction'),
-    (1800, 1999, 'not used'),
-    (2000, 3999, 'Manufacturing'),
-    (4000, 4999, 'Transportation & Utility'),
-    (5000, 5199, 'Wholesale Trade'),
-    (5200, 5999, 'Retail Trade'),
-    (6000, 6799, 'Finances'),
-    (7000, 8999, 'Services'),
-    (9100, 9729, 'Public Administration'),
-    (9900, 9999, 'Nonclassifiable'),
+    (1110, 3220, 'Agriculture， Forestry & Fishing'),
+    (5101, 9900, 'Mining & Quarrying'),
+    (10110, 33200, 'Manufacturing'),
+    (35110, 35300, 'Electricity, gas, steam and air conditioning supply'),
+    (36000, 39000, 'Water supply, sewerage, waste management and remediation activities'),
+    (41100, 43999, 'Construction'),
+    (45111, 47990, 'Wholesale and retail trade; repair of motor vehicles and motorcycles'),
+    (49100, 53202, 'Transportation and storage'),
+    (55100, 56302, 'Accommodation and food service activities'),
+    (58110, 63990, 'Information and communication'),
+    (64110, 66300, 'Financial and insurance activities'),
+    (68100, 68320, 'Real estate activities'),
+    (69101, 75000, 'Professional, scientific and technical activities'),
+    (77110, 82990, 'Administrative and support service activities'),
+    (84110, 84300, 'Public administration and defence; compulsory social security'),
+    (85100, 85600, 'Education'),
+    (86101, 88990, 'Human health and social work activities'),
+    (90010, 93290, 'Arts, entertainment and recreation'),
+    (94110, 96090, 'Other service activities'),
+    (97000, 98200, 'Activities of households as employers; undifferentiated goods- and services-producing activities '
+                   'of households for own use'),
+    (99000, 99999, 'Activities of extraterritorial organisations and bodies'),
 ]
 errors = set()
 
@@ -135,7 +145,7 @@ def to_code_range(i):
         return np.nan
     if i == "None Supplied":
         return np.nan
-    siccode = int(i[0:4])
+    siccode = int(i[0:5])
     for code_from, code_to, name in mappings:
         if code_from <= siccode <= code_to:
             return name
