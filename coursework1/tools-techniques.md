@@ -8,7 +8,7 @@ At a very late stage of this coursework, a member in the team had realized he ha
 This ultimately led to most of the changes were committed with that account. The GitHub account that he registered with the 
 module leader on Moodle was jonathon0301, which is in the team and organization. The account that he logged on his IDE was 
 JonathonShi. It can be inferred that these two accounts are the same person from user name. This statement is used to waive any 
-suspisions on academic misconduct. :pray: Thank you!
+suspicions on academic misconduct. :pray: Thank you!
 
 ## **Github Source Code Control**
  
