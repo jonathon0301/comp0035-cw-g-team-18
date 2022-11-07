@@ -158,14 +158,14 @@ make predictions on, and an independent variable dataframe containing other nume
 data was fitted into the Random Forest model to train the model. After training the model, the testing dataset was 
 used to make predictions on those missing values and those missing values were filled with predictions.
 
-***Very Important Message to Readers: The Random Forest Model can be quite slow to 
-execute :smiling_face_with_tear:, please be patient.***
-***Also, there might be an error message showing***
+<sup>Very Important Message to Readers: The Random Forest Model can be quite slow to 
+execute :smiling_face_with_tear:, please be patient.</sup>
+<sup>Also, there might be an error message showing</sup>
 ```
 DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples,), for example using ravel().
   model_1.fit(X_train, y_1_train)
 ```
-***This can be ignored as it will not impact the result.***
+<sup>This can be ignored as it will not impact the result.<sup>
 
 <details><summary> CLICK TO SEE CODES TO PERFORM RANDOM FOREST & FILL IN MISSING VALUES </summary>
 <p>
