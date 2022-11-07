@@ -294,7 +294,7 @@ df_none_na["PostCode"] = df_none_na["PostCode"].str.split().str[0]
 
 ```
 Then, [a dataset published by doogal.co.uk](https://www.doogal.co.uk/PostcodeDistricts) with a complete list of UK 
-postcode districts was used to match the Outcode to the Region and UK Region it represent with inner merge function of pandas.
+postcode districts was used to match the Outcode to the Region and UK Region it represents with inner merge function of pandas.
 
 ```ruby
 
@@ -313,6 +313,77 @@ print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_n
 ```
 
 #### Deal with SicCodes
-The Standard Industrial Classification code represents the nature of a business. 
+The Standard Industrial Classification code represents the nature of a business. In this dataframe, some companies have 
+multiple SIC codes, which is understandable as the company can do various business activities. However, to make it convenient 
+for us to do analysis, we choose only to keep the last term of the list for those companies having multiple codes.
+```ruby
+
+df_none_na["SicCodes"] = df_none_na["SicCodes"].str.split(pat='\n').str[-1]
+print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
+
+```
+
+The [UK government has classified SIC codes into 21 sections from A to U.](https://resources.companieshouse.gov.uk/sic/) 
+Though there is no ready-to-use dataframe for matching, since codes of each section is progressive 
+from small to big numbers, it is easy to manually create a mapping with the number range shown as below.
+
+```ruby
+
+mappings = [
+    (1110, 3220, 'Agriculture， Forestry & Fishing'),
+    (5101, 9900, 'Mining & Quarrying'),
+    (10110, 33200, 'Manufacturing'),
+    (35110, 35300, 'Electricity, gas, steam and air conditioning supply'),
+    (36000, 39000, 'Water supply, sewerage, waste management and remediation activities'),
+    (41100, 43999, 'Construction'),
+    (45111, 47990, 'Wholesale and retail trade; repair of motor vehicles and motorcycles'),
+    (49100, 53202, 'Transportation and storage'),
+    (55100, 56302, 'Accommodation and food service activities'),
+    (58110, 63990, 'Information and communication'),
+    (64110, 66300, 'Financial and insurance activities'),
+    (68100, 68320, 'Real estate activities'),
+    (69101, 75000, 'Professional, scientific and technical activities'),
+    (77110, 82990, 'Administrative and support service activities'),
+    (84110, 84300, 'Public administration and defence; compulsory social security'),
+    (85100, 85600, 'Education'),
+    (86101, 88990, 'Human health and social work activities'),
+    (90010, 93290, 'Arts, entertainment and recreation'),
+    (94110, 96090, 'Other service activities'),
+    (97000, 98200, 'Activities of households as employers; undifferentiated goods- and services-producing activities '
+                   'of households for own use'),
+    (99000, 99999, 'Activities of extraterritorial organisations and bodies'),
+]
+errors = set()
+
+```
+
+After that, the remaining SicCodes of the gender pay gap dataframe was converted to integers and was compared with the 
+range set in mappings. By doing this, the SicCodes are matched with the business activities that companies do (Industry).
+
+<details><summary> CLICK TO SEE HOW SIC CODES ARE MATCHED WITH INDUSTRY IN CODE </summary>
+<p>
+
+```ruby
+
+def to_code_range(i):
+    if type(i) != str:
+        return np.nan
+    if i == "None Supplied":
+        return np.nan
+    siccode = int(i[0:5])
+    for code_from, code_to, name in mappings:
+        if code_from <= siccode <= code_to:
+            return name
+    errors.add(siccode)
+    return np.nan
+
+
+df_none_na['Industry'] = df_none_na['SicCodes'].map(to_code_range)
+print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
+
+```
+
+</p>
+</details>
 
 
