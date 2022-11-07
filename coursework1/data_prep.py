@@ -47,6 +47,7 @@ print(df_merge_testing.shape, df_merge_testing.columns, df_merge_testing.isnull(
 
 # Train random forest regression model
 # NOTE: This can quite slow, please wait
+# Split Dataset
 X_train = df_merge_training[['DiffMeanHourlyPercent',
                              'DiffMedianHourlyPercent', 'MaleBonusPercent', 'FemaleBonusPercent',
                              'MaleLowerQuartile', 'FemaleLowerQuartile', 'MaleLowerMiddleQuartile',
@@ -63,9 +64,13 @@ X_test = df_merge_testing[['DiffMeanHourlyPercent',
                            'FemaleLowerMiddleQuartile', 'MaleUpperMiddleQuartile',
                            'FemaleUpperMiddleQuartile', 'MaleTopQuartile', 'FemaleTopQuartile']]
 
+# Define Model
+
 model_1 = RandomForestRegressor(n_estimators=100, random_state=0)
 
 model_2 = RandomForestRegressor(n_estimators=100, random_state=0)
+
+# Fit Model
 
 model_1.fit(X_train, y_1_train)
 

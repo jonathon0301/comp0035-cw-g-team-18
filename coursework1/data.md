@@ -41,7 +41,7 @@ it is necessary to explain some vague meanings:
 ## 2. Data Preparation
 After loading the six spreadsheets into the data_prep python file and looking at their basic information mentioned in 
 the previous section, we decided to merge all the tables into one single dataframe they all contain the same columns. 
-The merger is inconsequential as we do not expect the situation would vary a lot within these years and we do not plan 
+The merger is inconsequential as we do not expect the situation would vary a lot within these years, and we do not plan 
 to analyze in time series. Instead, we wish to have a look at the gender pay gap situation across different industries, 
 regions and company sizes. The merged dataset then became the initial dataset for preparation.
 
@@ -149,4 +149,70 @@ plt.show()
    
 </p>
 </details>
+
+In this case, a tree-based machine learning model -- Random Forest is utilized to predict those missing 
+values. To perform the model, the dataframe was first split into a training dataframe with no missing values and a 
+testing dataframe with rows containing those missing values. Each dataframe was also separated to two dependent 
+variable dataframe containing columns of DiffMeanBonusPercent & DiffMedianBonusPercent respectively, which the model is about to 
+make predictions on, and an independent variable dataframe containing other numerical values. Then, the training 
+data was fitted into the Random Forest model to train the model. After training the model, the testing dataset was 
+used to make predictions on those missing values and those missing values were filled with predictions.
+
+***Very Important Message to Readers: The Random Forest Model can be quite slow to 
+execute :smiling_face_with_tear:, please be patient.***
+***Also, there might be an error message showing***
+```
+DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples,), for example using ravel().
+  model_1.fit(X_train, y_1_train)
+```
+***This can be ignored as it will not impact the result.***
+
+<details><summary> CLICK TO SEE CODES TO PERFORM RANDOM FOREST & FILL IN MISSING VALUES </summary>
+<p>
+
+```ruby
+
+# Split Dataset
+X_train = df_merge_training[['DiffMeanHourlyPercent',
+                             'DiffMedianHourlyPercent', 'MaleBonusPercent', 'FemaleBonusPercent',
+                             'MaleLowerQuartile', 'FemaleLowerQuartile', 'MaleLowerMiddleQuartile',
+                             'FemaleLowerMiddleQuartile', 'MaleUpperMiddleQuartile',
+                             'FemaleUpperMiddleQuartile', 'MaleTopQuartile', 'FemaleTopQuartile']]
+
+y_1_train = df_merge_training[['DiffMeanBonusPercent']]
+
+y_2_train = df_merge_training[['DiffMedianBonusPercent']]
+
+X_test = df_merge_testing[['DiffMeanHourlyPercent',
+                           'DiffMedianHourlyPercent', 'MaleBonusPercent', 'FemaleBonusPercent',
+                           'MaleLowerQuartile', 'FemaleLowerQuartile', 'MaleLowerMiddleQuartile',
+                           'FemaleLowerMiddleQuartile', 'MaleUpperMiddleQuartile',
+                           'FemaleUpperMiddleQuartile', 'MaleTopQuartile', 'FemaleTopQuartile']]
+
+# Define Model
+
+model_1 = RandomForestRegressor(n_estimators=100, random_state=0)
+
+model_2 = RandomForestRegressor(n_estimators=100, random_state=0)
+
+# Fit Model
+
+model_1.fit(X_train, y_1_train)
+
+model_2.fit(X_train, y_2_train)
+
+# Predict the value with the testing data and substitute values to null values
+y_1_pred = model_1.predict(X_test)
+y_2_pred = model_2.predict(X_test)
+print(y_1_pred, y_2_pred)
+df_merge_testing = df_merge_testing.assign(DiffMeanBonusPercent=y_1_pred)
+df_merge_testing = df_merge_testing.assign(DiffMedianBonusPercent=y_2_pred)
+print(df_merge_testing.shape, df_merge_testing.columns, df_merge_testing.isnull().sum())
+
+```
+   
+</p>
+</details>
+
+
 
