@@ -593,5 +593,33 @@ London has the highest difference in gender bonus payment in average while North
 Northern Ireland and Scotland has the smaller proportion of highly-paid women in general while other areas 
 look to have similar levels.
 
+<details><summary> CLICK TO SEE HOW BOXPLOT AGAINST REGION WERE DRAWN IN CODE </summary>
+<p>
 
+```ruby
 
+# Plot9: BoxPlot of DiffMeanHourlyPercent against Region
+fig9 = plt.subplots()
+ax9 = sns.boxplot(data=df_visualization, y="DiffMeanHourlyPercent", x="UK region")
+ax9.set(ylim=(-200, 200))
+ax9.tick_params(axis='x', labelrotation=90)
+ax9.set_title('BoxPlot of DiffMeanHourlyPercent against Region')
+
+# Plot10: BoxPlot of DiffMeanBonusPercent against Region
+fig10 = plt.subplots()
+ax10 = sns.boxplot(data=df_visualization, y="DiffMeanBonusPercent", x="UK region")
+ax10.set(ylim=(-200, 200))
+ax10.tick_params(axis='x', labelrotation=90)
+ax10.set_title('BoxPlot of DiffMeanBonusPercent against Region')
+
+# Plot11: BoxPlot of FemaleTopQuartile against Region
+fig11 = plt.subplots()
+ax11 = sns.boxplot(data=df_visualization, y="FemaleTopQuartile", x="UK region")
+ax11.set(ylim=(-200, 200))
+ax11.tick_params(axis='x', labelrotation=90)
+ax11.set_title('BoxPlot of FemaleTopQuartile against Region')
+
+```
+
+</p>
+</details>
