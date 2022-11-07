@@ -442,3 +442,5 @@ EmployerSizeMedian           688
 
 The processed dataframe was then exported as gender_pay_gap_prepared.csv for future use.
 
+## 3. Data Visualization
+@Taytay217 Finish the remaining plz
