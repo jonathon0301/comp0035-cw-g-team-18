@@ -118,6 +118,8 @@ dtype: int64
 
 ```
 
+#### Delete Directly
+
 It can be inferred that missing values on **MaleLowerQuartile, FemaleLowerQuartile, 
 MaleLowerMiddleQuartile, FemaleLowerMiddleQuartile, MaleUpperMiddleQuartile, FemaleUpperMiddleQuartile, 
 MaleTopQuartile and FemaleTopQuartile** are in the **same rows**. Meanwhile, compared with 48988 total rows, 
@@ -126,6 +128,8 @@ only 170 of that on PostCode seem to be irrelevant.
 Therefore, these columns are simply removed from the dataset with the code
 
 ```df_merge = df_merge.dropna(subset=['MaleLowerQuartile', 'SicCodes', 'PostCode'])```
+
+#### Perform Random Forest Model to Predict Missing Values
 
 However, even after deleting these rows, there are still 8181 missing values on DiffMeanBonusPercent and 
 8183 on DiffMedianBonusPercent, which are relatively a large proportion (approximately 18%) 
@@ -158,14 +162,15 @@ make predictions on, and an independent variable dataframe containing other nume
 data was fitted into the Random Forest model to train the model. After training the model, the testing dataset was 
 used to make predictions on those missing values and those missing values were filled with predictions.
 
-<sup>Very Important Message to Readers: The Random Forest Model can be quite slow to 
-execute :smiling_face_with_tear:, please be patient.</sup>
-<sup>Also, there might be an error message showing</sup>
+***Very Important Message to Readers: The Random Forest Model can be quite slow to 
+execute :smiling_face_with_tear:, please be patient.***
+
+***Also, there might be an error message showing***
 ```
 DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples,), for example using ravel().
   model_1.fit(X_train, y_1_train)
 ```
-<sup>This can be ignored as it will not impact the result.<sup>
+***This can be ignored as it will not impact the result.***
 
 <details><summary> CLICK TO SEE CODES TO PERFORM RANDOM FOREST & FILL IN MISSING VALUES </summary>
 <p>
@@ -214,5 +219,55 @@ print(df_merge_testing.shape, df_merge_testing.columns, df_merge_testing.isnull(
 </p>
 </details>
 
+#### Bind Separated Dataframes
 
+Finally, the testing dataframe filled with predicted values was integrated with the training dataframe, which 
+generated a dataframe with 45650 rows and no missing values. 
 
+```
+
+(45650, 17) 
+
+Index(['PostCode', 'SicCodes', 'DiffMeanHourlyPercent',
+       'DiffMedianHourlyPercent', 'DiffMeanBonusPercent',
+       'DiffMedianBonusPercent', 'MaleBonusPercent', 'FemaleBonusPercent',
+       'MaleLowerQuartile', 'FemaleLowerQuartile', 'MaleLowerMiddleQuartile',
+       'FemaleLowerMiddleQuartile', 'MaleUpperMiddleQuartile',
+       'FemaleUpperMiddleQuartile', 'MaleTopQuartile', 'FemaleTopQuartile',
+       'EmployerSize'],
+      dtype='object') 
+
+PostCode                     0
+SicCodes                     0
+DiffMeanHourlyPercent        0
+DiffMedianHourlyPercent      0
+DiffMeanBonusPercent         0
+DiffMedianBonusPercent       0
+MaleBonusPercent             0
+FemaleBonusPercent           0
+MaleLowerQuartile            0
+FemaleLowerQuartile          0
+MaleLowerMiddleQuartile      0
+FemaleLowerMiddleQuartile    0
+MaleUpperMiddleQuartile      0
+FemaleUpperMiddleQuartile    0
+MaleTopQuartile              0
+FemaleTopQuartile            0
+EmployerSize                 0
+
+```
+
+<details><summary> CLICK TO SEE CODES TO INTEGRATE TWO DATAFRAMES </summary>
+<p>
+
+```ruby
+
+df_none_na = pd.concat([df_merge_training, df_merge_testing], axis=0)
+print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
+
+```
+
+</p>
+</details>
+
+### 2.3. Deal with Postcode, SicCodes & EmployerSize
