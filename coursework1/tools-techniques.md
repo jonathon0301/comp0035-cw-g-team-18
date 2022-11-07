@@ -1,6 +1,5 @@
 # Use of software engineering tools and techniques (coursework 1)
 
-## **Software Engineering Tools and Techniques**
 Team 18 Group Repository: <https://github.com/ucl-comp0035/comp0035-cw-g-team-18.git>
 
 ## **Github Source Code Control**
@@ -38,12 +37,12 @@ using emojis, and adding collapsed sections. ***The evidence for utilization can
 The **pandas** and **matplotlib** are mandatory to use in this coursework for data preparation. The use of these packages 
 can be shown in data_prep.py file.
 
-## **Adopted CRISP_DM data science process model
+## **Adopted CRISP_DM data science process model**
 
 As planned in the project-method.pdf document, our team has adopted the CRISP_DM process model at this stage of the project 
 as this stage only includes data analytics processes. We have followed the process model in series of Business Understanding, 
 Data Understanding and Data Preparation. This process aligns with our deliverables of Business Needs, data_prep.py and data.md.
 
-## **Progress Reporting
+## **Progress Reporting**
 
 All team members have reported their weekly progress on Moodle before PGTA sessions on Friday.
