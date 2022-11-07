@@ -7,24 +7,24 @@ Team 18 Group Repository: <https://github.com/ucl-comp0035/comp0035-cw-g-team-18
 At a very late stage of this coursework, a member in the team had realized he had used his another GitHub account on his IDE. :cry: 
 This ultimately led to most of the changes were committed with that account. The GitHub account that he registered with the 
 module leader on Moodle was jonathon0301, which is in the team and organization. The account that he logged on his IDE was 
-JonathonShi. It can be inferred that these two accounts are the same person from user name. This statement is used to waive any 
+JonathonShi. It can be inferred that these two accounts are the same person from username. This statement is used to waive any 
 suspicions on academic misconduct. :pray: Thank you!
 
-## **Github Source Code Control**
+## **GitHub Source Code Control**
  
 In this group coursework, team members are allowed to access the group repository and coursework files using their 
-own Github account. Later, team members work in parallel on their own machines with their selected 
+own GitHub account. Later, team members work in parallel on their own machines with their selected 
 IDE (VScode or PyCharm). Whenever there are some changes in one team member's work, we can commit and push to the 
-remote repository on Github, so any further changes can be seen from Commits to the Branch. This is done by a Pull 
-Request as changes are added to it, so team members receive feedback from other team members. Finally we merge all 
-changes and different versions back to the Master Branch. With the Github source code control, team members are 
+remote repository on GitHub, so any further changes can be seen from Commits to the Branch. This is done by a Pull 
+Request as changes are added to it, so team members receive feedback from other team members. Finally, we merge all 
+changes and different versions back to the Master Branch. With the GitHub source code control, team members are 
 working more effectively and efficiently as we can make changes on files without affecting the main source code. 
 After editing a file in our own IDE, we can quickly commit changes and push the update to the remote group 
 repository. This also records our team members working process for the rest of us to understand the whole project process.
 
 ## **Python Coding Environment**
   
-The project requires to use Python for data analytics and software development. Therefore, all of the team members have 
+The project requires to use Python for data analytics and software development. Therefore, all the team members have 
 done things below:
 
 1. Installed Python from python.org;
