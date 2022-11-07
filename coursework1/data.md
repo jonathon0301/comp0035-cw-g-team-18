@@ -451,3 +451,8 @@ The two histograms show distributions of DiffMeanHourlyPercent and DiffMedianHou
 which can be used to determine the overall trend on gender pay gap as these figures directly show the 
 salary situation. Since both of these histograms are negatively skewed, it can be inferred that most 
 companies pay more to male than to female.
+
+### Boxplot against Company Size
+
+
+### 
