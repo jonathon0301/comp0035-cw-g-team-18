@@ -446,6 +446,7 @@ The processed dataframe was then exported as gender_pay_gap_prepared.csv for fut
 To help better understand the data, we have generated several data visualizations.
 ### Histograms of DiffMeanHourlyPercent & DiffMedianHourlyPercent
 ![](cw1_data_visulization/Figure_1.png) ![](cw1_data_visulization/Figure_2.png)
+
 The two histograms show distributions of DiffMeanHourlyPercent and DiffMedianHourlyPercent in general, 
 which can be used to determine the overall trend on gender pay gap as these figures directly show the 
 salary situation. Since both of these histograms are negatively skewed, it can be inferred that most 
