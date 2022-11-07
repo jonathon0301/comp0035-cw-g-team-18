@@ -2,7 +2,7 @@
 
 Team 18 Group Repository: <https://github.com/ucl-comp0035/comp0035-cw-g-team-18.git>
 
-## *** Very Important Message to Reader/Marker: Statement of Mixing GitHub Account ***
+## ***Very Important Message to Reader/Marker: Statement of Mixing GitHub Account***
 
 At a very late stage of this coursework, a member in the team had realized he had used his another GitHub account on his IDE. :cry: 
 This ultimately led to most of the changes were committed with that account. The GitHub account that he registered with the 
