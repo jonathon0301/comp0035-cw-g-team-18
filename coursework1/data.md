@@ -386,4 +386,59 @@ print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_n
 </p>
 </details>
 
+#### Deal with EmployerSize
+In case the future analysis may require looking at correlations between gender pay gap situations and the size 
+of companies, it can be helpful to convert the EmployerSize from strings to numerical values. By checking the unique 
+categories of EmployerSize with code
+```print(df_none_na.EmployerSize.value_counts())```
+It can be concluded that there are 7 types of EmployerSize shown as below.
+```ruby
+
+250 to 499        19769
+500 to 999        11093
+1000 to 4999       9781
+5000 to 19,999     2108
+Less than 250      1722
+Not Provided        688
+20,000 or more      283
+
+```
+Therefore, we simply choose to use the median number of the range given by original dataset, 
+use 35000 to represent sizes of those companies having more than 20000 employees, and substitute those 
+'Not Provided' with np.nan.
+
+<details><summary> CLICK TO SEE HOW EmployerSize WERE PROCESSED IN CODE </summary>
+<p>
+
+```ruby
+
+mapping = {
+    'Less than 250': 125,
+    '250 to 499': 350,
+    '500 to 999': 750,
+    '1000 to 4999': 3000,
+    '5000 to 19,999': 12500,
+    '20,000 or more': 35000,
+    'Not Provided': np.nan
+}
+
+df_none_na['EmployerSizeMedian'] = df_none_na['EmployerSize'].map(mapping.get)
+print(df_none_na.shape, df_none_na.columns, df_none_na.isnull().sum(), df_none_na.head(5))
+
+```
+
+</p>
+</details>
+
+
+By then, the data is ready to be used for future analysis. While new missing values (shown as below) appear due to 
+adding null values to 'Not Provided' and 'None Supplied' strings, they can be ignorable as they only take up a very 
+small proportion of total rows (45444 rows after processing).
+```
+UK region                      7
+Industry                     711
+EmployerSizeMedian           688
+```
+
+The processed dataframe was then exported as gender_pay_gap_prepared.csv for future use.
 
