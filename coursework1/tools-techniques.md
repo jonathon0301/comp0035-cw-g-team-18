@@ -1,6 +1,5 @@
 # Use of software engineering tools and techniques (coursework 1)
 
-## **Software Engineering Tools and Techniques**
 Team 18 Group Repository: <https://github.com/ucl-comp0035/comp0035-cw-g-team-18.git>
 
 ## **Github Source Code Control**
