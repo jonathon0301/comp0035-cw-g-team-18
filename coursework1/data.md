@@ -445,14 +445,153 @@ The processed dataframe was then exported as gender_pay_gap_prepared.csv for fut
 ## 3. Data Visualization
 To help better understand the data, we have generated several data visualizations.
 ### Histograms of DiffMeanHourlyPercent & DiffMedianHourlyPercent
-![](cw1_data_visulization/Figure_1.png) ![](cw1_data_visulization/Figure_2.png)
+![](cw1_data_visulization/Figure_1.png) 
+
+![](cw1_data_visulization/Figure_2.png)
 
 The two histograms show distributions of DiffMeanHourlyPercent and DiffMedianHourlyPercent in general, 
 which can be used to determine the overall trend on gender pay gap as these figures directly show the 
 salary situation. Since both of these histograms are negatively skewed, it can be inferred that most 
 companies pay more to male than to female.
 
+<details><summary> CLICK TO SEE HOW HISTOGRAMS WERE DRAWN IN CODE </summary>
+<p>
+
+```ruby
+
+# Plot1: Histogram on DiffMeanHourly Percent
+fig1, ax1 = plt.subplots()
+ax1.set_title('Distribution of DiffMeanHourlyPercent')
+ax1.hist(df_visualization[['DiffMeanHourlyPercent']], bins=50)
+
+# Plot2: Histogram on DiffMedianHourly Percent
+fig2, ax2 = plt.subplots()
+ax2.set_title('Distribution of DiffMedianHourlyPercent')
+ax2.hist(df_visualization[['DiffMedianHourlyPercent']], bins=50)
+
+```
+
+</p>
+</details>
+
 ### Boxplot against Company Size
+Then, three boxplot showing DiffMeanHourlyPercent, DiffMeanBonusPercent and FemaleTopQuartile against company 
+size were plotted to indicate the impact of company size on wage payment, bonus payment, and female revenue 
+ceiling respectively.
+
+![](cw1_data_visulization/Figure_3.png) 
+
+It can be seen that larger companies tend to have narrower gap in base wage payment between men and 
+women. 
+
+![](cw1_data_visulization/Figure_4.png)
+
+However, there is a proportional relationship between DiffMeanBonusPercent and company size, 
+which indicates that larger organizations tend to pay more bonus to men in average. 
+
+![](cw1_data_visulization/Figure_5.png)
+
+Meanwhile, as the largest companies have fewest FemaleTopQuartile, it can be inferred that it is difficult for females to 
+get paid highly in large groups. In addition, all average lines are below 50, which means the total number of highly-paid 
+females is smaller than that of males.
+
+<details><summary> CLICK TO SEE HOW BOXPLOT AGAINST COMPANY SIZE WERE DRAWN IN CODE </summary>
+<p>
+
+```ruby
+
+# Plot3: BoxPlot of DiffMeanHourlyPercent against EmployerSizeMedian
+fig3 = plt.subplots()
+ax3 = sns.boxplot(data=df_visualization, y="DiffMeanHourlyPercent", x="EmployerSizeMedian")
+ax3.set(ylim=(-200, 200))
+ax3.set_title('BoxPlot of DiffMeanHourlyPercent against EmployerSizeMedian')
+
+# Plot4: BoxPlot of DiffMeanBonusPercent against EmployerSizeMedian
+fig4 = plt.subplots()
+ax4 = sns.boxplot(data=df_visualization, y="DiffMeanBonusPercent", x="EmployerSizeMedian")
+ax4.set(ylim=(-200, 200))
+ax4.set_title('BoxPlot of DiffMeanBonusPercent against EmployerSizeMedian')
+
+# Plot5: BoxPlot of FemaleTopQuartile against EmployerSizeMedian
+fig5 = plt.subplots()
+ax5 = sns.boxplot(data=df_visualization, y="FemaleTopQuartile", x="EmployerSizeMedian")
+ax5.set(ylim=(-200, 200))
+ax5.set_title('BoxPlot of FemaleTopQuartile against EmployerSizeMedian')
+
+```
+
+</p>
+</details>
+
+### Boxplot against Company Size & Industry
+In order to see whether trends found above are in general across all types of industries, the three plots 
+were re-drawn by categorizing with industries.
+
+![](cw1_data_visulization/Figure_6.png) 
+
+It can be seen that not all industries have narrower payment gap in larger organizations. For example, the 
+largest size of financial and insurance companies tend to have the highest difference in hourly payment between 
+male and female. Meanwhile, the graph makes sense in case that conventionally men-favored industries such as 
+**Manufacturing, Construction, Real Estate, Mining and Finance** have overall higher mean gender pay gap against women.
+
+![](cw1_data_visulization/Figure_7.png)
+
+The overall trend on bonus gap keeps working on different industries except **transportation & storage**, where larger 
+companies have smaller bonus gap in average.
+
+![](cw1_data_visulization/Figure_8.png)
+
+In case of highly paid female numbers across different industries, it can be seen that 
+females in industries like **Education and Human health and social work activities**, take more proportions in highly-paid 
+workers. However, it is quite difficult for them to be paid highly in men-favored industries.
+
+<details><summary> CLICK TO SEE HOW BOXPLOT AGAINST COMPANY SIZE & INDUSTRIES WERE DRAWN IN CODE </summary>
+<p>
+
+```ruby
+
+# Plot6: BoxPlot of DiffMeanHourlyPercent against EmployerSizeMedian & Industry
+fig6 = plt.subplots()
+ax6 = sns.boxplot(data=df_visualization, y="DiffMeanHourlyPercent", x="Industry", hue='EmployerSizeMedian')
+ax6.set(ylim=(-200, 200))
+ax6.tick_params(axis='x', labelrotation=90)
+ax6.set_title('BoxPlot of DiffMeanHourlyPercent against EmployerSizeMedian & Industry')
+
+# Plot7: BoxPlot of DiffMeanBonusPercent against EmployerSizeMedian & Industry
+fig7 = plt.subplots()
+ax7 = sns.boxplot(data=df_visualization, y="DiffMeanBonusPercent", x="Industry", hue='EmployerSizeMedian')
+ax7.set(ylim=(-200, 200))
+ax7.tick_params(axis='x', labelrotation=90)
+ax7.set_title('BoxPlot of DiffMeanBonusPercent against EmployerSizeMedian & Industry')
+
+# Plot8: BoxPlot of FemaleTopQuartile against EmployerSizeMedian & Industry
+fig8 = plt.subplots()
+ax8 = sns.boxplot(data=df_visualization, y="FemaleTopQuartile", x="Industry", hue='EmployerSizeMedian')
+ax8.set(ylim=(-50, 150))
+ax8.tick_params(axis='x', labelrotation=90)
+ax8.set_title('BoxPlot of FemaleTopQuartile against EmployerSizeMedian & Industry')
+
+```
+
+</p>
+</details>
+
+### Boxplot against Regions
+Finally, these three index were plotted against regions to show whether geographical reasons impact the gender pay gap. 
+
+![](cw1_data_visulization/Figure_9.png) 
+
+It can be shown that the average differences between male and female wage across different regions in the UK are similar 
+to each other. However, Wales and Northern Ireland tend to have smaller variance.
+
+![](cw1_data_visulization/Figure_10.png) 
+
+London has the highest difference in gender bonus payment in average while North East has the lowest (nearly to 0).
+
+![](cw1_data_visulization/Figure_11.png) 
+
+Northern Ireland and Scotland has the smaller proportion of highly-paid women in general while other areas 
+look to have similar levels.
 
 
-### 
+
