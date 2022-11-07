@@ -1,23 +1,49 @@
 # Use of software engineering tools and techniques (coursework 1)
 
-Use this file to provide evidence for the software engineering tools and techniques section of coursework 1
-
 ## **Software Engineering Tools and Techniques**
-Team 18 Group Repo: <https://github.com/ucl-comp0035/comp0035-cw-g-team-18.git>
+Team 18 Group Repository: <https://github.com/ucl-comp0035/comp0035-cw-g-team-18.git>
 
 ## **Github Source Code Control**
  
-In this group coursework, team members are allowed to access the group repository and coursework files using their own Github account. Later, team members create a topic branch to work in parallel on their own codespace or IDE (VScode or PyCharm). Whenever there are some changes in our team member's work We can commit and push to the remote repository on Github, so any further changes can be seen from Commits to the Branch. This is done by a Pull Request as changes are added to it, so team members receive feedback from other team members. Finally we merge all changes and different versions back to the Master Branch. With the Github source code control, team members are working more effectively and efficiently as we can make changes on files without affecting the main source code. After editing a file in our own codespace, we can quickly commit changes and push the update to the remote group repository. This also records our team members working process for the rest of us to understand the whole project process.
+In this group coursework, team members are allowed to access the group repository and coursework files using their 
+own Github account. Later, team members work in parallel on their own machines with their selected 
+IDE (VScode or PyCharm). Whenever there are some changes in one team member's work, we can commit and push to the 
+remote repository on Github, so any further changes can be seen from Commits to the Branch. This is done by a Pull 
+Request as changes are added to it, so team members receive feedback from other team members. Finally we merge all 
+changes and different versions back to the Master Branch. With the Github source code control, team members are 
+working more effectively and efficiently as we can make changes on files without affecting the main source code. 
+After editing a file in our own IDE, we can quickly commit changes and push the update to the remote group 
+repository. This also records our team members working process for the rest of us to understand the whole project process.
 
 ## **Python Coding Environment**
   
-To cope with Section 3 Data Preparation, we applied Python to deal with our datasets. Before this, we cloned the repository in the Github account for making a Python project. With the new project created, we can apply the large selection of libraries that Python have to do basic data information, data visualization, an machine learning models, which give us more insight of our datasets. Since our main objective for the coursework is to design a web app, using Python allows us to build websites and test softwares with fewer coding steps. In this way, our team members, the web developers, can read and understand the code more easily, helping us find problems or errors easily so as to make improvements on the web design. 
+The project requires to use Python for data analytics and software development. Therefore, all of the team members have 
+done things below:
+
+1. Installed Python from python.org;
+2. Installed git for using GitHub to work in team;
+3. Signed up a GitHub account and joined in the group repository;
+4. Downloaded IDE (VSCode or PyCharm) for working on own machine;
+5. Created .venv virtual environment to separate the dependencies of different projects
 
 ## **Markdown for text**
 
-Markdown, as a simple syntax for formatting plain text, helps our team mebers to read and write our working process easily without learning extra words or letters. Our team has used this tool for writing processes of work including interpretation of data analysis for Section 3 Data Preparation, recording our individual workig process, explaining our project, and even interacting with each other by leaving their own comments. With this, we are more flexible with its versatility to choose characters and formatting like *@mentions*,*emojis* and *references* for the web app design. 
+Markdown is a commonly used format of documentation in software development. We have adopted a range of use in Markdown 
+files including adding headings, styling, quoting codes, adding links, adding images, creating lists, creating tables, 
+using emojis, and adding collapsed sections. ***The evidence for utilization can be proven from this and data.md file.***
 
 
 ## **pandas and matplotlib for data preparation**
 
-Both **pandas** and **matplotlib** are Python packages that we have installed for data analysis. We used **pandas** to read and merge the 6 **.csv** files and clean data to find out any missing values. Later, we split the whole dataset into **training** and **testing** datasets for a random forest model to fill empty spaces for deeper data analysis. Besides, we also applied the **matplotlib** package for data visualization by creating plots showing trends in different attributes related to the gender pay gaps, which enable us to see changes in gender pay gap attrinutes in different years. Besides, we also produce a geographic plot showing the degree of gender pay gap in the United Kingdom based on information of districts from the postcodes. With these two packages, our team is more effective in analyzing data patterns and gaining insights for further web app design.
+The **pandas** and **matplotlib** are mandatory to use in this coursework for data preparation. The use of these packages 
+can be shown in data_prep.py file.
+
+## **Adopted CRISP_DM data science process model
+
+As planned in the project-method.pdf document, our team has adopted the CRISP_DM process model at this stage of the project 
+as this stage only includes data analytics processes. We have followed the process model in series of Business Understanding, 
+Data Understanding and Data Preparation. This process aligns with our deliverables of Business Needs, data_prep.py and data.md.
+
+## **Progress Reporting
+
+All team members have reported their weekly progress on Moodle before PGTA sessions on Friday.
