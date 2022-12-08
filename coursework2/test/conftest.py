@@ -5,6 +5,7 @@ import pytest
 
 sys.path.append("../")
 from src import shopping_basket
+from shopping_basket import Item, Basket
 
 
 @pytest.fixture
