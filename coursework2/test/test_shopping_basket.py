@@ -4,8 +4,7 @@ from decimal import Decimal
 import pytest
 
 sys.path.append("../")
-from src import shopping_basket
-from shopping_basket import Item, Basket
+from src.shopping_basket import Item, Basket
 
 
 class TestItem:
