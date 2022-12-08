@@ -1,7 +1,10 @@
+import sys
 from decimal import Decimal
-import pytest
-from coursework2.src.shopping_basket import Item, Basket
 
+import pytest
+
+sys.path.append("..")
+from shopping_basket import Item, Basket
 
 @pytest.fixture
 def item(self):
