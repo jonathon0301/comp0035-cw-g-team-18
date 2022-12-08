@@ -1,8 +1,5 @@
 from decimal import Decimal
 import pytest
-from coursework2.src.shopping_basket import Item, Basket
-
-
 class TestItem:
     @pytest.fixture
     def item(self):
@@ -79,4 +76,3 @@ class TestBasket:
     def test_is_empty(self, basket, item):
         assert basket.is_empty() == True
         basket.add_item(item)
-
