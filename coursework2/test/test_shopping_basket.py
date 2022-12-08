@@ -3,7 +3,7 @@ from decimal import Decimal
 
 import pytest
 
-sys.path.append("..")
+sys.path.append("../")
 from src.shopping_basket import Item, Basket
 
 
