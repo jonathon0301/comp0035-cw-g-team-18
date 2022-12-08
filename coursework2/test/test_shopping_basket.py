@@ -1,7 +1,6 @@
 from decimal import Decimal
 import pytest
-import shopping_basket.Item
-import shopping_basket.Basket
+from coursework2.src.shopping_basket import Item, Basket
 
 
 class TestItem:
