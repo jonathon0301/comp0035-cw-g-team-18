@@ -1,5 +1,9 @@
 from decimal import Decimal
 import pytest
+import sys
+
+
+sys.path.append("../")
 from coursework2.src.shopping_basket import Item, Basket
 
 
