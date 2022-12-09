@@ -1,10 +1,7 @@
-import sys
 from decimal import Decimal
-
 import pytest
+import shopping_basket
 
-sys.path.append("../")
-from src.shopping_basket import Item, Basket
 
 
 class TestItem:

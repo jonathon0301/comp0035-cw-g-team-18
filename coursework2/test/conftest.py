@@ -1,12 +1,6 @@
-import sys
 from decimal import Decimal
-
 import pytest
-
-sys.path.append("../")
-from src.shopping_basket import Item, Basket
-
-
+import shopping_basket
 
 @pytest.fixture
 def item(self):
