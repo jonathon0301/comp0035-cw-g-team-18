@@ -27,7 +27,7 @@ class TestItem:
 
 class TestBasket:
 
-    def test_init(self, basket):
+    def test_init_basket(self, basket):
         """
 
         GIVEN an empty basket created as fixture
@@ -38,7 +38,7 @@ class TestBasket:
         assert basket.items == {}
         assert basket.checkout is False
 
-    def test_repr(self, basket, item_1):
+    def test_repr_basket(self, basket, item_1):
         """
 
         GIVEN an empty basket and an item_1 created as fixture is added into the basket
@@ -53,25 +53,25 @@ class TestBasket:
     def test_add_item(self, basket, item_1, item_2):
         """
 
-        Given a shopping basket is empty as created in fixture
-        When an item_1 created in fixture is added to the basket with add_item method
-        Then it will return information of the item_1 and quantity of 1
+        GIVEN a shopping basket is empty as created in fixture
+        WHEN an item_1 created in fixture is added to the basket with add_item method
+        THEN it will return information of the item_1 and quantity of 1
 
-        Given the basket already has 1 item created in fixture from previous shopping
-        When another of the same item is added to the basket with add_item method
-        Then it will return information of the item and quantity of 2
+        GIVEN the basket already has 1 item created in fixture from previous shopping
+        WHEN another of the same item is added to the basket with add_item method
+        THEN it will return information of the item and quantity of 2
 
-        Given the basket contains 2 items created in fixture
-        When 3 more same items is added to the basket with add_item method
-        Then it will return information of the item and quantity of 5
+        GIVEN the basket contains 2 items created in fixture
+        WHEN 3 more same items is added to the basket with add_item method
+        THEN it will return information of the item and quantity of 5
 
-        Given the basket contains 5 items created in fixture
-        When another type of item named item_2 is added to the basket with add_item method
-        Then it will return information of the original item and quantity 5 with information of item_1 and quantity 1
+        GIVEN the basket contains 5 items created in fixture
+        WHEN another type of item named item_2 is added to the basket with add_item method
+        THEN it will return information of the original item and quantity 5 with information of item_1 and quantity 1
 
-        Given the basket contains 5 items created in fixture
-        When a non-positive number of items is added with add_item method
-        Then it will raise ValueError
+        GIVEN the basket contains 5 items created in fixture
+        WHEN a non-positive number of items is added with add_item method
+        THEN it will raise ValueError
 
         """
         basket.add_item(item_1)
@@ -92,23 +92,23 @@ class TestBasket:
     def test_remove_item(self, basket, item_1):
         """
 
-        Given a shopping basket is empty as created in fixture
-        When an item created in fixture is added to the basket and then removed from the basket
-        Then it will return items as an empty set
+        GIVEN a shopping basket is empty as created in fixture
+        WHEN an item created in fixture is added to the basket and then removed from the basket
+        THEN it will return items as an empty set
 
-        Given a shopping basket is empty as created in fixture
-        When 3 items created in fixture are added to the basket and pass the remove_item method without
+        GIVEN a shopping basket is empty as created in fixture
+        WHEN 3 items created in fixture are added to the basket and pass the remove_item method without
         specifying quantity of removal
-        Then it will return items as an empty set
+        THEN it will return items as an empty set
 
-        Given a shopping basket is empty as created in fixture
-        When 3 items created in fixture are added to the basket and pass the remove_item method while
+        GIVEN a shopping basket is empty as created in fixture
+        WHEN 3 items created in fixture are added to the basket and pass the remove_item method while
         specifying quantity of 2
-        Then it will return the item information and quantity as 1
+        THEN it will return the item information and quantity as 1
 
-        Given 3 items are added into shopping basket
-        When the basket passes remove_item function with non-positive quantity (0 & -1)
-        Then it will return items as an empty set
+        GIVEN 3 items are added into shopping basket
+        WHEN the basket passes remove_item function with non-positive quantity (0 & -1)
+        THEN it will return items as an empty set
 
         """
         basket.add_item(item_1)
@@ -132,13 +132,13 @@ class TestBasket:
     def test_update_item(self, basket, item_1):
         """
 
-        Given an item created in fixture is added into a basket with add_item method
-        When the quantity of item is changed to 2 with update_item method
-        Then it will return the item information and quantity as 2
+        GIVEN an item created in fixture is added into a basket with add_item method
+        WHEN the quantity of item is changed to 2 with update_item method
+        THEN it will return the item information and quantity as 2
 
-        Given a basket is not cleaned and has 2 items
-        When a negative quantity is passed with update_item method
-        Then it will return an empty set
+        GIVEN a basket is not cleaned and has 2 items
+        WHEN a negative quantity is passed with update_item method
+        THEN it will return an empty set
 
         """
         basket.add_item(item_1)
@@ -150,9 +150,9 @@ class TestBasket:
     def test_view(self, basket, item_1, capsys):
         """
 
-        Given 2 items created in fixture are added to the shopping basket with add_item function
-        When these 2 items passed to "test_view" function
-        Then it will return the contents of the basket including quantity, price and total cost.
+        GIVEN 2 items created in fixture are added to the shopping basket with add_item function
+        WHEN these 2 items passed to "test_view" function
+        THEN it will return the contents of the basket including quantity, price and total cost.
 
         """
         basket.add_item(item_1, 2)
@@ -164,9 +164,9 @@ class TestBasket:
     def test_get_total_cost(self, basket, item_1):
         """
 
-        Given two items created in fixture are added into the basket with add_item method
-        When the basket passes get_total_cost method
-        Then it will return a decimal total cost for two items as 20.0
+        GIVEN two items created in fixture are added into the basket with add_item method
+        WHEN the basket passes get_total_cost method
+        THEN it will return a decimal total cost for two items as 20.0
 
         """
         basket.add_item(item_1, 2)
@@ -175,9 +175,9 @@ class TestBasket:
     def test_reset(self, basket, item_1):
         """
 
-        Given two items created in fixture are added into the basket with add_item method
-        When the basket passes reset method
-        Then it will return the basket as empty
+        GIVEN two items created in fixture are added into the basket with add_item method
+        WHEN the basket passes reset method
+        THEN it will return the basket as empty
 
         """
         basket.add_item(item_1, 2)
@@ -187,13 +187,13 @@ class TestBasket:
     def test_is_empty(self, basket, item_1):
         """
 
-        Given an empty basket created in fixture
-        When the basket passes is_empty function
-        Then it will return True
+        GIVEN an empty basket created in fixture
+        WHEN the basket passes is_empty function
+        THEN it will return True
 
-        Given an item created in fixture is added into the basket with add_item method
-        When the basket passes is_empty function
-        Then it will return False
+        GIVEN an item created in fixture is added into the basket with add_item method
+        WHEN the basket passes is_empty function
+        THEN it will return False
 
         """
         assert basket.is_empty() is True
