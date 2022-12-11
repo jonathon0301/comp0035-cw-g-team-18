@@ -1,3 +1,9 @@
+# Testing
+
+***This markdown file is used to illustrate our process of testing [shopping_basket.py](src/shopping_basket.py) file in 
+the src directory by using pytest. It will also describe a range of testing techniques used including pytest fixtures, 
+use of [conftest.py](test/conftest.py), coverage report, and continuous integration.***
+
 ## Unit Test
 We first installed the Pytest library to do unit tests based on the provided shopping_basket code. By doing the unit test, we can test our "dashboard panel" in the design section. These tests are defined and described with a "GIVEN - WHEN - THAT" method. Since each testing requires a basket for doing the unit testing. We used fixtures to provide common functions for these tests so as to make our code efficient. 
 
