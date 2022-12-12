@@ -217,6 +217,192 @@ def test_add_item(self, basket, item_1, item_2):
 
 ##### Test Function 6: test_remove_item
 The test function is to test the remove_item method in the Basket class, which intends to delete or reduce quantity of a 
-type of item in the basket. In order to test it, we have 
+type of item in the basket. In order to test it, we have considered 5 situations:
+
+1. When the basket is empty, and we force it to delete a non-existing item, it should return an empty set;
+2. When an item is added to the basket and then removed, it should return an empty set;
+3. When 3 items are added to the basket and the basket passes the method without specifying quantity to be removed, it 
+should delete all items and return an empty set;
+4. When 3 items are added to the basket and remove 2 of them from the basket, it should return information of the item 
+with its quantity 1;
+5. When 3 items are in the basket, when it asks to remove a non-positive number of items from the basket, it returns an 
+empty set.
+
+**These five scenarios are created based on the original code, however, though the code declared as it was, we believe the 
+fifth point is not sensible in reality as remove 0 items should maintain the same quantity of items in the basket, which 
+is a point that the original code should change.**
+
+To describe these five situations in GIVEN-WHEN_THEN Approach:
+
+"""
+GIVEN a shopping basket is empty as created in fixture
+WHEN the empty basket passes the remove_item method asked to delete one item_1
+THEN it will return items as an empty set
+
+GIVEN a shopping basket is empty as created in fixture
+WHEN an item created in fixture is added to the basket and then removed from the basket
+THEN it will return items as an empty set
+
+GIVEN a shopping basket is empty as created in fixture
+WHEN 3 items created in fixture are added to the basket and pass the remove_item method without 
+specifying quantity of removal
+THEN it will return items as an empty set
+
+GIVEN a shopping basket is empty as created in fixture
+WHEN 3 items created in fixture are added to the basket and pass the remove_item method while
+specifying quantity of 2
+THEN it will return the item information and quantity as 1
+
+GIVEN 3 items are added into shopping basket
+WHEN the basket passes remove_item function with non-positive quantity (0 & -1)
+THEN it will return items as an empty set
+
+"""
+
+Code for this test function:
+```ruby
+def test_remove_item(self, basket, item_1):
+
+    basket.remove_item(item_1)
+    assert basket.items == {}
+    basket.add_item(item_1)
+    basket.remove_item(item_1)
+    assert basket.items == {}
+    basket.add_item(item_1, 3)
+    basket.remove_item(item_1)
+    assert basket.items == {}
+    basket.add_item(item_1, 3)
+    basket.remove_item(item_1, 2)
+    assert basket.items == {item_1: 1}
+    basket.remove_item(item_1, 3)
+    assert basket.items == {}
+    basket.add_item(item_1, 3)
+    basket.remove_item(item_1, 0)
+    assert basket.items == {}
+    basket.add_item(item_1, 3)
+    basket.remove_item(item_1, -1)
+    assert basket.items == {}
+```
+##### Test Function 7: test_update_item
+The update_item method in the shopping_basket file is used to update quantity of a certain item to a specified quantity. 
+It will return an empty set if the given figure is non-positive. Therefore, we have tested it with two situations:
+1. A positive figure;
+2. A negative figure.
+
+To describe the test function in GIVEN-WHEN-THEN Approach:
+
+"""
+
+GIVEN an item created in fixture is added into a basket with add_item method
+WHEN the quantity of item is changed to 2 with update_item method
+THEN it will return the item information and quantity as 2
+
+GIVEN a basket is not cleaned and has 2 items
+WHEN a negative quantity is passed with update_item method
+THEN it will return an empty set
+
+"""
+
+Code for this test function:
+```ruby
+def test_update_item(self, basket, item_1):
+
+    basket.add_item(item_1)
+    basket.update_item(item_1, 2)
+    assert basket.items == {item_1: 2}
+    basket.update_item(item_1, -2)
+    assert basket.items == {}
+```
+
+##### Test Function 8: test_view
+The view method is used to check the shopping basket and return what items are in the basket, their quantity, price, and 
+total cost. We have tested the function with below GIVEN-WHEN-THEN Approach:
+
+"""
+
+GIVEN 2 items created in fixture are added to the shopping basket with add_item function
+WHEN these 2 items passed to "test_view" function
+THEN it will return the contents of the basket including quantity, price and total cost.
+
+"""
+
+Code for this test function:
+```ruby
+def test_view(self, basket, item_1, capsys):
+
+    basket.add_item(item_1, 2)
+    basket.view()
+    captured = capsys.readouterr()
+    assert captured.out == """---------------------\n + Brand 1 Product 1 - 2 x £10.00 = £20.00
+---------------------\nBasket total = £20.00\n---------------------\n"""
+```
+
+##### Test Function 9: test_get_total_cost
+This test function is to test whether the get_total_cost function can calculate the total cost for items in a basket 
+properly. To define the test function in GIVEN-WHEN-THEN Approach:
+
+"""
+
+GIVEN two items created in fixture are added into the basket with add_item method
+WHEN the basket passes get_total_cost method
+THEN it will return a decimal total cost for two items as 20.0
+
+"""
+
+Code for this test function: 
+```ruby
+def test_get_total_cost(self, basket, item_1):
+
+    basket.add_item(item_1, 2)
+    assert basket.get_total_cost() == 20.0
+```
+
+##### Test Function 10: test_reset
+The reset method is to empty the basket, in other words, delete all items in the basket. To test it, we have set the 
+GIVEN-WHEN-THEN Approach as below:
+
+"""
+
+GIVEN two items created in fixture are added into the basket with add_item method
+WHEN the basket passes reset method
+THEN it will return the basket as empty
+
+"""
+
+Code for this test function:
+```ruby
+def test_reset(self, basket, item_1):
+
+    basket.add_item(item_1, 2)
+    basket.reset()
+    assert basket.items == {}
+```
+
+##### Test Function 11: test_is_empty
+The test function is to test the is_empty method, which checks whether the basket is empty and returns the boolean value. 
+We have considered 2 situations in order to see if the method works properly. To describe it in GIVEN-WHEN-THEN Approach: 
+
+"""
+
+GIVEN an empty basket created in fixture
+WHEN the basket passes is_empty function
+THEN it will return True
+
+GIVEN an item created in fixture is added into the basket with add_item method
+WHEN the basket passes is_empty function
+THEN it will return False
+
+"""
+
+Code for this test function:
+```ruby
+def test_is_empty(self, basket, item_1):
+
+    assert basket.is_empty() is True
+    basket.add_item(item_1)
+    assert basket.is_empty() is False
+```
+
+
 
 
