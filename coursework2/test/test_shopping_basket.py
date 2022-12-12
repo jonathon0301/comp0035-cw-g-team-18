@@ -91,6 +91,9 @@ class TestBasket:
 
     def test_remove_item(self, basket, item_1):
         """
+        GIVEN a shopping basket is empty as created in fixture
+        WHEN the empty basket passes the remove_item method asked to delete one item_1
+        THEN it will return items as an empty set
 
         GIVEN a shopping basket is empty as created in fixture
         WHEN an item created in fixture is added to the basket and then removed from the basket
@@ -111,6 +114,8 @@ class TestBasket:
         THEN it will return items as an empty set
 
         """
+        basket.remove_item(item_1)
+        assert basket.items == {}
         basket.add_item(item_1)
         basket.remove_item(item_1)
         assert basket.items == {}

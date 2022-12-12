@@ -112,6 +112,111 @@ def test_repr(self, item_1):
 ```
 
 #### Class TestBasket
-##### Test Function 3: 
+##### Test Function 3: test_init_basket
+Coming to methods in class Basket. As the same as what we did in the previous Item class, we have tested the constructor 
+function. It can be described with the following GIVEN-WHEN-THEN Approach by testing with item_1 pre-defined 
+in conftest.py:
+
+"""
+
+GIVEN an empty basket created as fixture
+WHEN it passes the constructor function __init__
+THEN it will return an empty set of items and checkout status of False
+
+"""
+
+Code for this test functions is shown below:
+```ruby
+def test_init_basket(self, basket):
+
+    assert basket.items == {}
+    assert basket.checkout is False
+```
+
+##### Test Function 4: test_repr_basket
+The fourth test function is similar to the test function for string representation function in the Item class, which 
+aims to test whether the _\_repr__ function in Basket class returns the desired format of strings. The GIVEN-WHEN-THEN 
+Approach of this test function can be written as:
+
+"""
+
+GIVEN an empty basket and an item_1 created as fixture is added into the basket
+WHEN they pass the string representation function __repr__
+THEN it will return the String representation of checkout status and the list of items
+and their quantity in the basket, which should be False\n<Brand, Product, Description, 10, 1>'
+
+"""
+
+Code for this test function:
+
+```ruby
+def test_repr_basket(self, basket, item_1):
+
+    basket.add_item(item_1)
+    assert repr(basket) == "False\n<Brand 1, Product 1, Description 1, 10, 1>"
+```
+
+##### Test Function 5: test_add_item
+
+This test function is to investigate whether the add_item method in Basket class works properly. We have considered 5 
+scenarios for this test:
+
+1. When the basket is empty, add one item;
+2. When the basket already has 1 item, add one more of the same item;
+3. When the basket has 2 of the item, add 3 more of the same item;
+4. When the basket has 5 of the item, add a different type of item to the basket;
+5. When the basket had 5 of the item, add a negative number of item (which is not realistic), expect to raise error.
+
+To describe the above scenarios in GIVEN-WHEN_THEN Approach:
+
+"""
+
+GIVEN a shopping basket is empty as created in fixture
+WHEN an item_1 created in fixture is added to the basket with add_item method
+THEN it will return information of the item_1 and quantity of 1
+
+GIVEN the basket already has 1 item created in fixture from previous shopping
+        WHEN another of the same item is added to the basket with add_item method
+        THEN it will return information of the item and quantity of 2
+
+GIVEN the basket contains 2 items created in fixture
+WHEN 3 more same items is added to the basket with add_item method
+THEN it will return information of the item and quantity of 5
+
+GIVEN the basket contains 5 items created in fixture
+WHEN another type of item named item_2 is added to the basket with add_item method
+THEN it will return information of the original item and quantity 5 with information of item_1 and quantity 1
+
+GIVEN the basket contains 5 items created in fixture
+WHEN a non-positive number of items is added with add_item method
+THEN it will raise ValueError
+
+"""
+
+Code for this test function:
+
+```ruby
+def test_add_item(self, basket, item_1, item_2):
+
+    basket.add_item(item_1)
+    assert basket.items == {item_1: 1}
+    basket.add_item(item_1)
+    assert basket.items == {item_1: 2}
+    basket.add_item(item_1, 3)
+    assert basket.items == {item_1: 5}
+    basket.add_item(item_2)
+    assert basket.items == {item_1: 5,
+                            item_2: 1}
+    basket.remove_item(item_2)
+    basket.add_item(item_1, -1)
+    assert ValueError
+    basket.add_item(item_1, 0)
+    assert ValueError
+
+```
+
+##### Test Function 6: test_remove_item
+The test function is to test the remove_item method in the Basket class, which intends to delete or reduce quantity of a 
+type of item in the basket. In order to test it, we have 
 
 
