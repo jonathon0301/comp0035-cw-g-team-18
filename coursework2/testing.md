@@ -1,7 +1,7 @@
 ## Unit Test
-###We first installed the Pytest library to do unit tests based on the provided shopping_basket code. By doing the unit test, we can test our "dashboard panel" in the design section. These tests are defined and described with a "GIVEN - WHEN - THAT" method. Since each testing requires a basket for doing the unit testing. We used fixtures to provide common functions for these tests so as to make our code efficient. 
+We first installed the Pytest library to do unit tests based on the provided shopping_basket code. By doing the unit test, we can test our "dashboard panel" in the design section. These tests are defined and described with a "GIVEN - WHEN - THAT" method. Since each testing requires a basket for doing the unit testing. We used fixtures to provide common functions for these tests so as to make our code efficient. 
 
-###Test 1
+### Test 1
 
 """  
 Given a shopping basket is empty\
@@ -18,7 +18,7 @@ Then the shopping basket has total 5 items
 
 """
 
-###Test 2
+### Test 2
 
 """\
 Given a shopping basket is empty\
@@ -34,7 +34,7 @@ When 3 items are added to the basket and 2 items removed from the basket\
 Then the shopping basket has left 1 item
 """
 
-###Test 3
+### Test 3
 
 """\
 Given a shopping basekt has 1 item\
@@ -47,7 +47,7 @@ Then the shopping basket has only 1 item left
 
 """
 
-###Test 4
+### Test 4
 
 """\
 Given 2 items are added to the shopping basket\
@@ -55,7 +55,7 @@ When these 2 items passed to "test_view" function\
 Then the shopping basket has these 2 items' brand name, product type, and product descriptions and unit price of 10\
 """
 
-###Test 5
+### Test 5
 
 """\
 Given a shopping basket has 2 items\
@@ -64,7 +64,7 @@ Then the total cost of these two items is: 20.0\
 """
 
 
-###Test 6
+### Test 6
 
 """\
 Given 2 items are already in a shopping basket\
@@ -74,7 +74,7 @@ Then the basket is reset to 0 item
 """
 
 
-###Test 7
+### Test 7
 
 """ 
 Given a basket is empty\
