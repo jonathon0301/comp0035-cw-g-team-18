@@ -29,7 +29,7 @@ class TestBasket:
 
     def test_init(self, basket):
         assert basket.items == {}
-        assert basket.checkout == False
+        assert basket.checkout is False
 
     def test_repr(self, basket, item):
         basket.add_item(item)
@@ -77,6 +77,6 @@ class TestBasket:
         assert basket.items == {}
 
     def test_is_empty(self, basket, item):
-        assert basket.is_empty() == True
+        assert basket.is_empty() is True
         basket.add_item(item)
-        assert basket.is_empty() == False
+        assert basket.is_empty() is False
