@@ -135,10 +135,22 @@ class TestBasket:
         assert basket.items == {item: 1}
 
     def test_view(self, basket, item, capsys):
+        """
+
+        Given 2 items created in fixture are added to the shopping basket with add_item function
+        When these 2 items passed to "test_view" function
+        Then it will return the contents of the basket including quantity, price and total cost.
+
+        """
         basket.add_item(item, 2)
         basket.view()
         captured = capsys.readouterr()
-        assert captured.out == "Brand, Product, Description, 10, 2\n"
+        assert captured.out == """---------------------
+ + Brand Product - 2 x £10.00 = £20.00
+---------------------
+Basket total = £20.00
+---------------------
+"""
 
     def test_get_total_cost(self, basket, item):
         basket.add_item(item, 2)
