@@ -78,7 +78,11 @@ class TestBasket:
 
         Given the basket contains 2 items created in fixture
         When 3 more same items is added to the basket with add_item method
-        Then it will return information of the item and quantity of 2
+        Then it will return information of the item and quantity of 5
+
+        Given the basket contains 5 items created in fixture
+        When a negative number of items is added with add_item method
+        Then it will raise ValueError
 
         """
         basket.add_item(item)
@@ -87,6 +91,8 @@ class TestBasket:
         assert basket.items == {item: 2}
         basket.add_item(item, 3)
         assert basket.items == {item: 5}
+        basket.add_item(item, -1)
+        assert "Invalid operation - Quantity must be a positive number!"
 
     def test_remove_item(self, basket, item):
         """
