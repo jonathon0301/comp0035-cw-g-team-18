@@ -153,15 +153,40 @@ Basket total = £20.00
 """
 
     def test_get_total_cost(self, basket, item):
+        """
+
+        Given two items created in fixture are added into the basket with add_item method
+        When the basket passes get_total_cost method
+        Then it will return a decimal total cost for two items as 20.0
+
+        """
         basket.add_item(item, 2)
         assert basket.get_total_cost() == Decimal(20.0)
 
     def test_reset(self, basket, item):
+        """
+
+        Given two items created in fixture are added into the basket with add_item method
+        When the basket passes reset method
+        Then it will return the basket as empty
+
+        """
         basket.add_item(item, 2)
         basket.reset()
         assert basket.items == {}
 
     def test_is_empty(self, basket, item):
+        """
+
+        Given an empty basket created in fixture
+        When the basket passes is_empty function
+        Then it will return True
+
+        Given an item created in fixture is added into the basket with add_item method
+        When the basket passes is_empty function
+        Then it will return False
+
+        """
         assert basket.is_empty() is True
         basket.add_item(item)
         assert basket.is_empty() is False
