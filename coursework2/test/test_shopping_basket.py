@@ -81,7 +81,11 @@ class TestBasket:
         Then it will return information of the item and quantity of 5
 
         Given the basket contains 5 items created in fixture
-        When a negative number of items is added with add_item method
+        When another type of item named item_1 is added to the basket with add_item method
+        Then it will return information of the original item and quantity 5 with information of item_1 and quantity 1
+
+        Given the basket contains 5 items created in fixture
+        When a non-positive number of items is added with add_item method
         Then it will raise ValueError
 
         """
@@ -91,7 +95,13 @@ class TestBasket:
         assert basket.items == {item: 2}
         basket.add_item(item, 3)
         assert basket.items == {item: 5}
+        item_1 = Item("Brand1", "Product1", "Description1", Decimal(10.1))
+        basket.add_item(item_1)
+        assert basket.items == {item: 5,
+                                item_1: 1}
         basket.add_item(item, -1)
+        assert "Invalid operation - Quantity must be a positive number!"
+        basket.add_item(item, 0)
         assert "Invalid operation - Quantity must be a positive number!"
 
     def test_remove_item(self, basket, item):
@@ -111,6 +121,10 @@ class TestBasket:
         specifying quantity of 2
         Then it will return the item information and quantity as 1
 
+        Given 3 items are added into shopping basket
+        When the basket passes remove_item function with non-positive quantity (0 & -1)
+        Then it will return items as an empty set
+
         """
         basket.add_item(item)
         basket.remove_item(item)
@@ -121,6 +135,14 @@ class TestBasket:
         basket.add_item(item, 3)
         basket.remove_item(item, 2)
         assert basket.items == {item: 1}
+        basket.remove_item(item, 3)
+        assert basket.items == {}
+        basket.add_item(item, 3)
+        basket.remove_item(item, 0)
+        assert basket.items == {}
+        basket.add_item(item, 3)
+        basket.remove_item(item, -1)
+        assert basket.items == {}
 
     def test_update_item(self, basket, item):
         """
