@@ -58,7 +58,7 @@ class TestBasket:
 
         GIVEN an empty basket and an item created as fixture
         WHEN it passes the string representation function __repr__
-        THEN it will return the String representation of a basket object with iteration of the list of items
+        THEN it will return the String representation of checkout status and the list of items
         and their quantity in the basket, which should be False\n<Brand, Product, Description, 10, 1>'
 
         """
