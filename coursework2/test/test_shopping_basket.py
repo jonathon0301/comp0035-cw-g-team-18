@@ -145,12 +145,8 @@ class TestBasket:
         basket.add_item(item, 2)
         basket.view()
         captured = capsys.readouterr()
-        assert captured.out == """---------------------
- + Brand Product - 2 x £10.00 = £20.00
----------------------
-Basket total = £20.00
----------------------
-"""
+        assert captured.out == """---------------------\n + Brand Product - 2 x £10.00 = £20.00
+---------------------\nBasket total = £20.00\n---------------------\n"""
 
     def test_get_total_cost(self, basket, item):
         """
