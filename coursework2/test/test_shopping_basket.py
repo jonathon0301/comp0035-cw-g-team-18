@@ -120,19 +120,19 @@ class TestBasket:
         """
 
         Given an item created in fixture is added into a basket with add_item method
-        When 2 more items are added to the basket with update_item method
-        Then it will return the item information and quantity as 3
+        When the quantity of item is changed to 2 with update_item method
+        Then it will return the item information and quantity as 2
 
-        Given a basket is not cleaned and has 3 items
-        When two items are now removed from the basket with update_item method
-        Then it will return the item information and quantity as 1
+        Given a basket is not cleaned and has 2 items
+        When a negative quantity is passed with update_item method
+        Then it will return an empty set
 
         """
         basket.add_item(item)
         basket.update_item(item, 2)
-        assert basket.items == {item: 3}
+        assert basket.items == {item: 2}
         basket.update_item(item, -2)
-        assert basket.items == {item: 1}
+        assert basket.items == {}
 
     def test_view(self, basket, item, capsys):
         """
