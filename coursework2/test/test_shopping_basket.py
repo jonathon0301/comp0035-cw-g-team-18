@@ -1,6 +1,3 @@
-from decimal import Decimal
-
-
 class TestItem:
 
     def test_init(self, item_1):
@@ -15,7 +12,7 @@ class TestItem:
         assert item_1.brand_name == "Brand 1"
         assert item_1.product_name == "Product 1"
         assert item_1.description == "Description 1"
-        assert item_1.price == Decimal(10.0)
+        assert item_1.price == 10.0
 
     def test_repr(self, item_1):
         """
@@ -173,7 +170,7 @@ class TestBasket:
 
         """
         basket.add_item(item_1, 2)
-        assert basket.get_total_cost() == Decimal(20.0)
+        assert basket.get_total_cost() == 20.0
 
     def test_reset(self, basket, item_1):
         """
