@@ -8,8 +8,8 @@ class TestItem:
 
         GIVEN an item_1 created as fixture
         WHEN the item_1 passes the constructor function __init__
-        THEN it will return brand_name as "Brand", product_name as "Product", description as "Description" and price as
-        10.0 in decimal
+        THEN it will return brand_name as "Brand 1", product_name as "Product 1", description as "Description 1" and
+        price as 10.0 in decimal
 
         """
         assert item_1.brand_name == "Brand 1"
