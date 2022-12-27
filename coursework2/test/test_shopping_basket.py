@@ -14,16 +14,6 @@ class TestItem:
         assert item_1.description == "Description 1"
         assert item_1.price == 10.0
 
-    def test_repr(self, item_1):
-        """
-
-        GIVEN an item_1 created as fixture
-        WHEN the item_1 passes the string representation function __repr__
-        THEN it will return a string as "Brand, Product, Description, 10"
-
-        """
-        assert repr(item_1) == "Brand 1, Product 1, Description 1, 10"
-
 
 class TestBasket:
 
@@ -37,18 +27,6 @@ class TestBasket:
         """
         assert basket.items == {}
         assert basket.checkout is False
-
-    def test_repr_basket(self, basket, item_1):
-        """
-
-        GIVEN an empty basket and an item_1 created as fixture is added into the basket
-        WHEN they pass the string representation function __repr__
-        THEN it will return the String representation of checkout status and the list of items
-        and their quantity in the basket, which should be False\n<Brand, Product, Description, 10, 1>'
-
-        """
-        basket.add_item(item_1)
-        assert repr(basket) == "False\n<Brand 1, Product 1, Description 1, 10, 1>"
 
     def test_add_item(self, basket, item_1, item_2):
         """
