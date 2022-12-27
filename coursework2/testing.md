@@ -514,11 +514,13 @@ it reports error all the time for not finding the module, even though pytest wor
 We had to change the pytest part of the yml file with codes found from marketplace to make it go through successfully. 
 Changes can be found in the yml file by clicking the hyperlink above.
 
-After that, results with all 11 test functions are shown below:
+After that, results with all 11 test functions (including 2 failures) are shown below:
 
 ![](test_screen_shot/results_all.png)
 
+Results after removing test functions for two _\_repr__ function:
 
+![](test_screen_shot/results_successful.png)
 
 
 
