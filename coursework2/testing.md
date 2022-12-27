@@ -512,13 +512,13 @@ it reports error all the time for not finding the module, even though pytest wor
 ![](test_screen_shot/python_application_error.png)
 
 We had to change the pytest part of the yml file with codes found from marketplace to make it go through successfully. 
-Changes are shown as below:
+Changes can be found in the yml file by clicking the hyperlink above.
 
-![](test_screen_shot/yml_change.png)
+After that, results with all 11 test functions are shown below:
 
-Successful result:
+![](test_screen_shot/results_all.png)
 
-![](test_screen_shot/successful.png)
+
 
 
 
