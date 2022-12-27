@@ -414,26 +414,53 @@ file works properly. Note that, it should not be correct for removing 0 items fr
 Test results for each test function is shown as below:
 
 **Test Function 1: test_init**
+
 ![](test_screen_shot/test_1.png)
+
 **Test Function 2: test_repr**
+
+As we can see, the actual result has an extra blank space at the front of strings than expected result. By checking the 
+original shopping_basket.py document, we can find there is a blank space put there, which could be wrong.
+
 ![](test_screen_shot/test_2.png)
+
 **Test Function 3: test_init_basket**
+
 ![](test_screen_shot/test_3.png)
+
 **Test Function 4: test_repr_basket**
+
+As we can see, the actual result is different from the expected result since the blank space problem described in test 
+function 2 and the method did not return quantity of items as desired.
+
 ![](test_screen_shot/test_4.png)
+
 **Test Function 5: test_add_item**
+
 ![](test_screen_shot/test_5.png)
+
 **Test Function 6: test_remove_item**
+
 ![](test_screen_shot/test_6.png)
+
 **Test Function 7: test_update_item**
+
 ![](test_screen_shot/test_7.png)
+
 **Test Function 8: test_view**
+
 ![](test_screen_shot/test_8.png)
+
 **Test Function 9: test_get_total_cost**
+
 ![](test_screen_shot/test_9.png)
+
 **Test Function 10: test_reset**
+
 ![](test_screen_shot/test_10.png)
+
 **Test Function 11: test_is_empty**
+
 ![](test_screen_shot/test_11.png)
 
 ## 2. Applying Coverage
