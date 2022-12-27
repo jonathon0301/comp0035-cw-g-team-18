@@ -413,6 +413,98 @@ file works properly. Note that, it should not be correct for removing 0 items fr
 
 Test results for each test function is shown as below:
 
+**Test Function 1: test_init**
+![](test_screen_shot/test_1.png)
+**Test Function 2: test_repr**
+![](test_screen_shot/test_2.png)
+**Test Function 3: test_init_basket**
+![](test_screen_shot/test_3.png)
+**Test Function 4: test_repr_basket**
+![](test_screen_shot/test_4.png)
+**Test Function 5: test_add_item**
+![](test_screen_shot/test_5.png)
+**Test Function 6: test_remove_item**
+![](test_screen_shot/test_6.png)
+**Test Function 7: test_update_item**
+![](test_screen_shot/test_7.png)
+**Test Function 8: test_view**
+![](test_screen_shot/test_8.png)
+**Test Function 9: test_get_total_cost**
+![](test_screen_shot/test_9.png)
+**Test Function 10: test_reset**
+![](test_screen_shot/test_10.png)
+**Test Function 11: test_is_empty**
+![](test_screen_shot/test_11.png)
+
+## 2. Applying Coverage
+
+To facilitate our process of unit testing by pytest, we have also implemented ```coverage``` python package. After 
+installing the package, instead of clicking to run a single test or the test file, we can type ```coverage run -m pytest``` 
+in the terminal to run all the test functions and record the coverage information.
+
+Results are shown below:
+![](test_screen_shot/coverage_run_1.png)
+![](test_screen_shot/coverage_run_2.png)
+
+Once the tests are completed, we generated a coverage report using ```coverage report``` command in terminal. This showed 
+us a summary of the coverage information, including the percentage of code that was executed during the tests and a list 
+of the files that were not covered. During the process, we have used it to improve the efficiency of conftest.py document 
+as some codes were not executed in that file. Finally, we got results shown as below:
+
+![](test_screen_shot/coverage_report.png)
+
+As shown above, only the shopping_basket.py file has 15 missed lines of code, which are the unnecessary main functions 
+created before. This means that the pytest process has executed all codes we wrote.
+
+To see the report in detail, we used the command ```coverage html```, which generated an HTML report, so that we can 
+view it in the browser. This helps to see clearly which line was not executed.
+
+Reports generated:
+
+![](test_screen_shot/coverage_html.png)
+
+An example of view in browser:
+
+![](test_screen_shot/coverage_html_eg.png)
+
+## 3. Pytest Fixtures Apart from conftest.py
+
+Aside from fixtures put in the conftest.py file, we have also used the `capsys` fixture provided by the `pytest-capturelog` 
+plugin that allows us to capture and inspect the output produced by a function in the test_view function.
+
+## 4. Continuous Integration
+Continuous integration (CI) is a software development practice where developers regularly merge their code changes into 
+a central repository, and then automated builds and tests are run on the code to ensure that it is working as expected. 
+The goal of CI is to detect and fix errors as quickly as possible, so that developers can focus on writing new code and 
+adding new features.
+
+In this coursework, we have created a [Python application workflow](https://github.com/ucl-comp0035/comp0035-cw-g-team-18/blob/e1f1654776d4a817ac0612edea547fc7a819d153/.github/workflows/python-app.yml) 
+on GitHub Actions. Unfortunately, the default yml file of the Python application did not work for the pytest section as 
+it reports error all the time for not finding the module, even though pytest works properly in IDE, as shown below:
+
+![](test_screen_shot/python_application_error.png)
+
+We had to change the pytest part of the yml file with codes found from marketplace to make it go through successfully. 
+Changes are shown as below:
+
+![](test_screen_shot/yml_change.png)
+
+Successful result:
+
+![](test_screen_shot/successful.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
