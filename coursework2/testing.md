@@ -235,6 +235,7 @@ is a point that the original code should change.**
 To describe these five situations in GIVEN-WHEN_THEN Approach:
 
 """
+
 GIVEN a shopping basket is empty as created in fixture
 WHEN the empty basket passes the remove_item method asked to delete one item_1
 THEN it will return items as an empty set
@@ -402,6 +403,15 @@ def test_is_empty(self, basket, item_1):
     basket.add_item(item_1)
     assert basket.is_empty() is False
 ```
+### 1.3 Test Result
+By directly clicking the green arrow next to each function or class in PyCharm, the IDE we chose to use, test results 
+of that test function or class can be shown, or by running the whole file, it will show pytest result for all unit tests. 
+Among all 11 test functions, 9 of them passed while 2 of them failed. The 2 failed test functions are two _\_repr__ 
+functions in Item and Basket class respectively, reasons of failure will be discussed later in this section. Meanwhile, 
+as mentioned above, even though the test_remove_item function passed, it only indicates the code of original shopping_basket.py 
+file works properly. Note that, it should not be correct for removing 0 items from multiple items to return an empty basket.
+
+Test results for each test function is shown as below:
 
 
 
