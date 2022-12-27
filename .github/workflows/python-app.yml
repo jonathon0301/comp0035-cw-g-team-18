@@ -34,5 +34,9 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Python Pytest Github Action
-      uses: fylein/python-pytest-github-action@v2
+        
+    - name: pytest-cov
+      # You may pin to the exact commit or the version.
+      # uses: lpenz/ghaction-pytest-cov@e7d3d83610d0e4a25353bc80198ff3dc47cfe114
+      uses: lpenz/ghaction-pytest-cov@v1
+
