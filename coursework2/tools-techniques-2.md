@@ -51,7 +51,7 @@ found in [requirements.pdf](requirements.pdf)
 
 The technique was used in prioritizing requirements, further details can be found in [requirements.pdf](requirements.pdf)
 
-## **Unified Modeling Language (UML) Diagram
+## **Unified Modeling Language (UML) Diagram**
 Both structure and behaviour diagrams were used in this coursework. For details, refer to Use Case Diagram in 
 [requirements.pdf](requirements.pdf) & Class Diagram in [design.pdf](design.pdf).
 
