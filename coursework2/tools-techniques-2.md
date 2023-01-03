@@ -15,7 +15,7 @@ suspicions on academic misconduct. :pray: Thank you!
 This is due to the code to be tested contains bugs which did not return what it expects to do. Since we have tested all 
 methods in the shopping_basket.py file, the two string representation methods have errors found after running pytest. The 
 CI workflow will show fail if keeping tests for those two methods but will work as successful if remove tests for those. 
-Details are explained in [testing.md](testing.md)
+Details are explained in [testing.md](testing.md). The yml file can be found by clicking [Python application workflow](https://github.com/ucl-comp0035/comp0035-cw-g-team-18/blob/e1f1654776d4a817ac0612edea547fc7a819d153/.github/workflows/python-app.yml) 
 
 ## **GitHUb Source Code Control**
 
@@ -61,7 +61,7 @@ This includes flowchart, wireframes, MVC design pattern, HTTP Methods and ERD di
 
 ## **Tools & Techniques Used in Unit Testing**
 
-Please see details in [testing.md](testing.md)
+This includes use of pytest, fixtures, Continuous Integration, and coverage. Please see details in [testing.md](testing.md)
 
 
 
